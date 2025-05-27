@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MessagingContracts\MessagingContracts.csproj" />
     <ProjectReference Include="..\NotificationService.Application\NotificationService.Application.csproj" />
   </ItemGroup>
 </Project>

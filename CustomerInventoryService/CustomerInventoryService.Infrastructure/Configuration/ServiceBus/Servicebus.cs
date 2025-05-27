@@ -1,14 +1,12 @@
-﻿namespace NotificationService.Infrastructure.Configuration.ServiceBus;
+﻿namespace CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
 
-using System.Reflection;
+using CustomerInventoryService.Application.Interfaces;
+using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
 using MassTransit;
 using MessagingContracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using NotificationService.Application.Consummers;
-using NotificationService.Application.Interfaces;
-using NotificationService.Infrastructure.Configuration.ServiceBus.Options;
 
 public static class Servicebus
 {
@@ -20,23 +18,13 @@ public static class Servicebus
 
         services.AddMassTransit<IServicebus>(x =>
         {
-            x.RegisterConsummers();
-
             x.ConfigureEndpointNaming();
 
-            x.UsingRabbitMq((context, cfg) =>
+            x.UsingRabbitMq((_, cfg) =>
             {
                 cfg.Host(servicebusOptions.ConnectionString);
-
-                cfg.ConfigureEndpoints(context);
             });
         });
-    }
-
-    private static void RegisterConsummers(this IBusRegistrationConfigurator configurator)
-    {
-        var consummers = new Assembly[] { typeof(SendReminderConsumer).Assembly };
-        configurator.AddConsumers(consummers);
     }
 
     private static void ConfigureEndpointNaming(this IBusRegistrationConfigurator configurator)

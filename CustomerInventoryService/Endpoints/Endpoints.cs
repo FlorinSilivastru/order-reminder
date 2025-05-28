@@ -19,14 +19,17 @@ internal static class Endpoints
                 => Results.Ok(await mediatr.SendAsync<GetOrderDetails, OrderDetailsDto>(query)))
         .WithName("Get-Order-Details");
 
-        app.MapPost("/add-product", async (IServicebus bus, IMediatr mediatr) =>
-        {
-            await mediatr.SendAsync(new AddProductCommand());
-            await bus.Publish<SendReminderMessage>(new
+        app.MapPost("/add-product", async (
+            [AsParameters] AddProductCommand command,
+            IServicebus bus,
+            IMediatr mediatr) =>
             {
-                OrderId = Guid.NewGuid(),
-            });
-        })
+                await mediatr.SendAsync(command);
+                await bus.Publish<SendReminderMessage>(new
+                {
+                    OrderId = Guid.NewGuid(),
+                });
+            })
         .WithName("Add-Product");
     }
 

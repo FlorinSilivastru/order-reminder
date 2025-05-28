@@ -1,6 +1,14 @@
-@CustomerInventoryService_HostAddress = http://localhost:5145
+@CustomerInventoryService_HostAddress = https://localhost:7239
 
-GET {{CustomerInventoryService_HostAddress}}/weatherforecast/
+GET {{CustomerInventoryService_HostAddress}}/getOrderDetails/
 Accept: application/json
 
 ###
+
+### Create Inventory Item
+POST {{CustomerInventoryService_HostAddress}}/add-product/
+Content-Type: application/json
+
+{
+  "id": "c123",
+}

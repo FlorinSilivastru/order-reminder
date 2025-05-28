@@ -1,7 +1,11 @@
-﻿using CustomerInventoryService.Application.Interfaces;
-using MessagingContracts;
+﻿namespace CustomerInventoryService.Endpoints;
 
-namespace CustomerInventoryService.Endpoints;
+using CustomerInventoryService.Application.CQRS.Commands;
+using CustomerInventoryService.Application.CQRS.Queries;
+using CustomerInventoryService.Application.CQRS.Queries.Dtos;
+using CustomerInventoryService.Application.Interfaces;
+using Mediatr.Contracts.Services;
+using MessagingContracts;
 
 internal static class Endpoints
 {
@@ -9,14 +13,21 @@ internal static class Endpoints
     {
         MapOpenApiInDevEnvironment(app);
 
-        app.MapGet("/weatherforecast", async (IServicebus bus) =>
+        app.MapGet("/getOrderDetails", async (
+                [AsParameters] GetOrderDetails query,
+                IMediatr mediatr)
+                => Results.Ok(await mediatr.SendAsync<GetOrderDetails, OrderDetailsDto>(query)))
+        .WithName("Get-Order-Details");
+
+        app.MapPost("/add-product", async (IServicebus bus, IMediatr mediatr) =>
         {
+            await mediatr.SendAsync(new AddProductCommand());
             await bus.Publish<SendReminderMessage>(new
             {
                 OrderId = Guid.NewGuid(),
             });
         })
-        .WithName("GetWeatherForecast");
+        .WithName("Add-Product");
     }
 
     private static void MapOpenApiInDevEnvironment(WebApplication app)

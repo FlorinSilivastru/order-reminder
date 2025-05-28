@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\Mediatr\Mediatr.csproj" />
 		<ProjectReference Include="..\..\MessagingContracts\MessagingContracts.csproj" />
 		<ProjectReference Include="..\CustomerInventoryService.Domain\CustomerInventoryService.Domain.csproj" />
 	</ItemGroup>

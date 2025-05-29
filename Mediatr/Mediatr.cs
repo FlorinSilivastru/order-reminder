@@ -1,5 +1,6 @@
 ﻿namespace Mediatr;
 
+using FluentValidation;
 using global::Mediatr.Contracts.Common;
 using global::Mediatr.Contracts.Handlers;
 using global::Mediatr.Contracts.Services;
@@ -13,6 +14,9 @@ public class Mediatr(IServiceProvider serviceProvider) : IMediatr
         ArgumentNullException.ThrowIfNull(command);
 
         await using var scope = serviceProvider.CreateAsyncScope();
+
+        await ValidatePayload(command, scope);
+
         await scope.ServiceProvider
             .GetRequiredService<IRequestHandler<T>>()
             .HandleAsync(command);
@@ -26,8 +30,26 @@ public class Mediatr(IServiceProvider serviceProvider) : IMediatr
 
         await using var scope = serviceProvider.CreateAsyncScope();
 
+        await ValidatePayload(query, scope);
+
         var handler = scope.ServiceProvider.GetRequiredService<IRequestHandler<T, TResult>>();
 
         return await handler.HandleAsync(query);
+    }
+
+    private static async Task ValidatePayload<T>(T command, AsyncServiceScope scope)
+        where T : IRequest
+    {
+
+        var validator = scope.ServiceProvider.GetService<IValidator<T>>();
+
+        if (validator is not null)
+        {
+            var result = await validator.ValidateAsync(command);
+            if (!result.IsValid)
+            {
+                throw new ValidationException(result.Errors);
+            }
+        }
     }
 }

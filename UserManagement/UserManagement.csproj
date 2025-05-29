@@ -15,4 +15,9 @@
     <AdditionalFiles Remove="C:\Users\FlorinSilivastru\source\repos\OrderReminder\Directory.Build.props\..\CodeMetricsConfig.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Middlewares\Middlewares.csproj" />
+    <ProjectReference Include="..\UserManagement.Infrastructure\UserManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

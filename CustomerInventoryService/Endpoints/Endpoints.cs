@@ -20,7 +20,7 @@ internal static class Endpoints
         .WithName("Get-Order-Details");
 
         app.MapPost("/add-product", async (
-            [AsParameters] AddProductCommand command,
+            AddProductCommand command,
             IServicebus bus,
             IMediatr mediatr) =>
             {

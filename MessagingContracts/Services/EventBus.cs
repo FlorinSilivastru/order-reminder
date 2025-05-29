@@ -8,7 +8,7 @@ public class EventBus(
     IHttpContextAccessor httpContextAccessor)
     : IEventBus
 {
-    private const string CorrelationIdHeader = "CorrelationId";
+    private const string CorrelationIdHeader = "X-Correlation-ID";
 
     public async Task PublishAsync<T>(T message)
         where T : class

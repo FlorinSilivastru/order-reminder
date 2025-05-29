@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Middlewares.Audit.Contracts;
 using Middlewares.Audit.Interfaces;
 using Middlewares.Logging;
+using System.Text;
 
 public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 {
@@ -21,10 +22,9 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 
         var correlationId = ExtractCorrelationId(context);
 
-        var initialResponseStream = context.Response.Body;
-
         await LogRequest(context.Request, correlationId, auditLogger);
 
+        var initialResponseStream = context.Response.Body;
         await using var responseStream = new MemoryStream();
         context.Response.Body = responseStream;
 
@@ -72,12 +72,20 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
     }
 
     private static async Task LogRequest(
-        HttpRequest request,
-        string correlationId,
-        IAuditLogger auditLogger)
+     HttpRequest request,
+     string correlationId,
+     IAuditLogger auditLogger)
     {
-        using var streamReader = new StreamReader(request.Body, leaveOpen: true);
-        var requestBody = await streamReader.ReadToEndAsync();
+        var originalBody = request.Body;
+        using var buffer = new MemoryStream();
+        await request.Body.CopyToAsync(buffer);
+
+        buffer.Seek(0, SeekOrigin.Begin);
+        request.Body = new MemoryStream(buffer.ToArray());
+
+        using var reader = new StreamReader(buffer, Encoding.UTF8, leaveOpen: true);
+        var requestBody = await reader.ReadToEndAsync();
+        buffer.Seek(0, SeekOrigin.Begin);
 
         var audit = new AuditEvent
         {
@@ -91,6 +99,7 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 
         await auditLogger.LogAsync(audit);
     }
+
 
     private static string? GetClientIpAddress(HttpRequest request)
     {

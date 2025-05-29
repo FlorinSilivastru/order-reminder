@@ -1,8 +1,8 @@
 ﻿namespace CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
 
-using CustomerInventoryService.Application.Interfaces;
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
 using MassTransit;
+using Messaging.Masstransit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -15,7 +15,7 @@ public static class Servicebus
     {
         var servicebusOptions = services.ConfigureAndGetServiceBusOption(configuration);
 
-        services.AddMassTransit<IServicebus>(x =>
+        services.AddMassTransit<IBus>(x =>
         {
             x.ConfigureEndpointNaming();
 
@@ -24,6 +24,8 @@ public static class Servicebus
                 cfg.Host(servicebusOptions.ConnectionString);
             });
         });
+
+        services.AddTransient<IEventBus, EventBus>();
     }
 
     private static void ConfigureEndpointNaming(this IBusRegistrationConfigurator configurator)

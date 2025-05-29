@@ -10,5 +10,5 @@ POST {{CustomerInventoryService_HostAddress}}/add-product/
 Content-Type: application/json
 
 {
-  "id": "c123",
+  "id": "c123"
 }

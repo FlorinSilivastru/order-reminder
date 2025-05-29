@@ -17,6 +17,8 @@ builder.Services.RegisterMediatr(typeof(AddProductCommandHandler).Assembly);
 builder.Services.RegisterValidation();
 builder.Services.RegisterAuditLog();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();

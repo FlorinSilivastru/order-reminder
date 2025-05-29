@@ -2,12 +2,11 @@
 
 using System.Reflection;
 using MassTransit;
-using MessagingContracts;
+using Messaging.Masstransit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NotificationService.Application.Consummers;
-using NotificationService.Application.Interfaces;
 using NotificationService.Infrastructure.Configuration.ServiceBus.Options;
 
 public static class Servicebus
@@ -18,7 +17,7 @@ public static class Servicebus
     {
         var servicebusOptions = services.ConfigureAndGetServiceBusOption(configuration);
 
-        services.AddMassTransit<IServicebus>(x =>
+        services.AddMassTransit<IBus>(x =>
         {
             x.RegisterConsummers();
 
@@ -31,6 +30,8 @@ public static class Servicebus
                 cfg.ConfigureEndpoints(context);
             });
         });
+
+        services.AddTransient<IEventBus, EventBus>();
     }
 
     private static void RegisterConsummers(this IBusRegistrationConfigurator configurator)

@@ -3,9 +3,9 @@
 using CustomerInventoryService.Application.CQRS.Commands;
 using CustomerInventoryService.Application.CQRS.Queries;
 using CustomerInventoryService.Application.CQRS.Queries.Dtos;
-using CustomerInventoryService.Application.Interfaces;
 using Mediatr.Contracts.Services;
 using Messaging.Masstransit.Contracts;
+using Messaging.Masstransit.Services;
 
 internal static class Endpoints
 {
@@ -21,11 +21,11 @@ internal static class Endpoints
 
         app.MapPost("/add-product", async (
             AddProductCommand command,
-            IServicebus bus,
+            IEventBus bus,
             IMediatr mediatr) =>
             {
                 await mediatr.SendAsync(command);
-                await bus.Publish<SendReminderMessage>(new
+                await bus.PublishAsync(new SendReminderMessage
                 {
                     OrderId = Guid.NewGuid(),
                 });

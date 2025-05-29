@@ -5,6 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Logging;
+using Middlewares.Logging;
 
 public sealed class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {
@@ -87,7 +88,8 @@ public sealed class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionM
 
     private static string GetCorrelationId(HttpContext context)
     {
-        if (context.Items.TryGetValue("X-Correlation-ID", out var value) && value is string id)
+        if (context.Items.TryGetValue(CorrelationIdMiddleware.CorrelationIdHeaderString, out var value)
+            && value is string id)
         {
             return id;
         }

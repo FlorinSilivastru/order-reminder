@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Middlewares\Middlewares.csproj" />
     <ProjectReference Include="..\UserMangement.Application\UserMangement.Application.csproj" />
   </ItemGroup>
 

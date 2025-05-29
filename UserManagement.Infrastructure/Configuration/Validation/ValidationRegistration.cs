@@ -1,4 +1,4 @@
-﻿namespace UserMangement.Infrastructure.Configuration.Validation;
+﻿namespace UserManagement.Infrastructure.Configuration.Validation;
 
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;

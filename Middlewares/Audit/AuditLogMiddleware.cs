@@ -8,24 +8,22 @@ using Middlewares.Logging;
 
 public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 {
+    private const string AnonymousUser = "Anonymous";
+    private static readonly string[] ExclusionPaths = ["HealthCheck", "/"];
+
     public async Task InvokeAsync(HttpContext context)
     {
-        if (context.Request.Path.ToString().Contains("HealthCheck"))
+        if (ExclusionPaths.Contains(context.Request.Path.ToString()))
         {
             await next(context);
             return;
         }
 
-        var correlationId = string.Empty;
-        if (context.Request.Headers.TryGetValue(CorrelationIdMiddleware.CorrelationIdHeaderString, out var headerValue)
-            && !string.IsNullOrWhiteSpace(headerValue))
-        {
-            correlationId = headerValue.ToString();
-        }
-
-        await LogRequest(context.Request, correlationId, auditLogger);
+        var correlationId = ExtractCorrelationId(context);
 
         var initialResponseStream = context.Response.Body;
+
+        await LogRequest(context.Request, correlationId, auditLogger);
 
         await using var responseStream = new MemoryStream();
         context.Response.Body = responseStream;
@@ -37,7 +35,22 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
         await responseStream.CopyToAsync(initialResponseStream);
     }
 
-    private static async Task LogResponse(HttpResponse response, string? correlationId, HttpRequest request, IAuditLogger auditLogger)
+    private static string ExtractCorrelationId(HttpContext context)
+    {
+        if (context.Request.Headers.TryGetValue(CorrelationIdMiddleware.CorrelationIdHeaderString, out var headerValue)
+            && !string.IsNullOrWhiteSpace(headerValue))
+        {
+            return headerValue.ToString();
+        }
+
+        return string.Empty;
+    }
+
+    private static async Task LogResponse(
+        HttpResponse response,
+        string? correlationId,
+        HttpRequest request,
+        IAuditLogger auditLogger)
     {
         response.Body.Seek(0, SeekOrigin.Begin);
 
@@ -48,10 +61,9 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
         var audit = new AuditEvent
         {
             AuditID = Guid.NewGuid(),
-            IpAddress = request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+            IpAddress = GetClientIpAddress(request),
             Url = request.GetDisplayUrl(),
-            UserName = request.HttpContext.User.Identity?.IsAuthenticated ?? false
-                ? request.HttpContext.User.Identity.Name : "Anonymous",
+            UserName = GetUserName(request),
             Response = responseBody,
             CorrelationId = correlationId,
         };
@@ -59,7 +71,10 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
         await auditLogger.LogAsync(audit);
     }
 
-    private static async Task LogRequest(HttpRequest request, string correlationId, IAuditLogger auditLogger)
+    private static async Task LogRequest(
+        HttpRequest request,
+        string correlationId,
+        IAuditLogger auditLogger)
     {
         using var streamReader = new StreamReader(request.Body, leaveOpen: true);
         var requestBody = await streamReader.ReadToEndAsync();
@@ -67,14 +82,25 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
         var audit = new AuditEvent
         {
             AuditID = Guid.NewGuid(),
-            IpAddress = request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+            IpAddress = GetClientIpAddress(request),
             Url = request.GetDisplayUrl(),
-            UserName = request.HttpContext.User.Identity?.IsAuthenticated ?? false
-                ? request.HttpContext.User.Identity.Name : "Anonymous",
-            Request = "Request:" + requestBody,
+            UserName = GetUserName(request),
+            Request = requestBody,
             CorrelationId = correlationId,
         };
 
         await auditLogger.LogAsync(audit);
+    }
+
+    private static string? GetClientIpAddress(HttpRequest request)
+    {
+        return request.HttpContext.Connection.RemoteIpAddress?.ToString();
+    }
+
+    private static string? GetUserName(HttpRequest request)
+    {
+        return request.HttpContext.User.Identity?.IsAuthenticated ?? false
+                        ? request.HttpContext.User.Identity.Name
+                        : AnonymousUser;
     }
 }

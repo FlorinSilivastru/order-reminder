@@ -6,11 +6,13 @@ public class CorrelationIdMiddleware(RequestDelegate next)
 {
     private const string CorrelationIdHeader = "X-Correlation-ID";
 
+    public static string CorrelationIdHeaderString => CorrelationIdHeader;
+
     public async Task InvokeAsync(HttpContext context)
     {
         string correlationId;
 
-        if (context.Request.Headers.TryGetValue(CorrelationIdHeader, out var headerValue) 
+        if (context.Request.Headers.TryGetValue(CorrelationIdHeader, out var headerValue)
             && !string.IsNullOrWhiteSpace(headerValue))
         {
             correlationId = headerValue.ToString();

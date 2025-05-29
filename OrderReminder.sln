@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationServiceAPI", "NotificationServiceAPI\NotificationServiceAPI.csproj", "{52A330F7-AF39-484B-B51B-E6068B102C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingContracts", "MessagingContracts\MessagingContracts.csproj", "{06591C14-3914-4C01-A7AD-D719D4008E15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging.Masstransit", "MessagingContracts\Messaging.Masstransit.csproj", "{06591C14-3914-4C01-A7AD-D719D4008E15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatr", "Mediatr\Mediatr.csproj", "{C7E90729-E3F8-47A0-9A90-E43007683D1F}"
 EndProject

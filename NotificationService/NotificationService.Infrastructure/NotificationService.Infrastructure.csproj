@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MessagingContracts\MessagingContracts.csproj" />
+    <ProjectReference Include="..\..\MessagingContracts\Messaging.Masstransit.csproj" />
     <ProjectReference Include="..\NotificationService.Application\NotificationService.Application.csproj" />
   </ItemGroup>
 </Project>

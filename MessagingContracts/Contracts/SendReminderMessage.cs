@@ -1,4 +1,4 @@
-﻿namespace MessagingContracts
+﻿namespace Messaging.Masstransit.Contracts
 {
     public record class SendReminderMessage
     {

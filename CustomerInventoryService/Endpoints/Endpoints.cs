@@ -5,7 +5,7 @@ using CustomerInventoryService.Application.CQRS.Queries;
 using CustomerInventoryService.Application.CQRS.Queries.Dtos;
 using CustomerInventoryService.Application.Interfaces;
 using Mediatr.Contracts.Services;
-using MessagingContracts;
+using Messaging.Masstransit.Contracts;
 
 internal static class Endpoints
 {

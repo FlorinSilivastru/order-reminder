@@ -3,7 +3,6 @@
 using CustomerInventoryService.Application.Interfaces;
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
 using MassTransit;
-using MessagingContracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;

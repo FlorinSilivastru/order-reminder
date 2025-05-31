@@ -26,7 +26,7 @@ public sealed class TokenRefreshingDelegatingHandler(
         {
             request.Headers.Authorization = new AuthenticationHeaderValue(Schemes.Bearer, GetBackchannelAccessToken(request.Options));
 
-            using HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
+            var response = await base.SendAsync(request, cancellationToken);
             if (response.StatusCode is not HttpStatusCode.Unauthorized)
             {
                 return response;

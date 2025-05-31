@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 using OpenIddict.Client;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -15,10 +16,10 @@ public static class IdentityProvider
 
     public static IServiceCollection SetupIdentityProviderAuthentication(this IServiceCollection services)
     {
-        //services.AddSingleton(s =>
-        //{
-        //    return new MongoClient("").GetDatabase("IdentityProvider-local");
-        //});
+        services.AddSingleton(s =>
+        {
+            return new MongoClient("mongodb://root:test@localhost:27017").GetDatabase("IdentityProvider");
+        });
 
         services
             .AddOpenIddict()

@@ -21,7 +21,7 @@ internal static class Endpoints
         .ReportApiVersions()
         .Build();
 
-        app.MapGet("/api/v{version:apiVersion}/getOrderDetails", async (
+        app.MapGet("/api/v{version:apiVersion}/customer-service/getOrderDetails", async (
                 [AsParameters] GetOrderDetails query,
                 IMediatr mediatr)
                 => Results.Ok(await mediatr.SendAsync<GetOrderDetails, OrderDetailsDto>(query)))
@@ -29,7 +29,7 @@ internal static class Endpoints
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(new ApiVersion(1, 0));
 
-        app.MapPost("/api/v{version:apiVersion}/add-product", async (
+        app.MapPost("/api/v{version:apiVersion}/customer-service/add-product", async (
             AddProductCommand command,
             IEventBus bus,
             IMediatr mediatr) =>

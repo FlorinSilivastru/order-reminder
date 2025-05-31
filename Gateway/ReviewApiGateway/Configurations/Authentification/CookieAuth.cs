@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 public static class CookieAuth
 {
-    public static void SetupCookieAuthenticationn(this IServiceCollection services)
+    public static IServiceCollection SetupCookieAuthenticationn(this IServiceCollection services)
     {
         services.ConfigureCookieAuthentication();
         services.SetupCookieAuthenticationPolicy();
+
+        return services;
     }
 
     private static void SetupCookieAuthenticationPolicy(this IServiceCollection services)

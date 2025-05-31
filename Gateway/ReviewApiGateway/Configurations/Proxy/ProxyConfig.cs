@@ -12,7 +12,7 @@ using static OpenIddict.Client.OpenIddictClientModels;
 
 public static class ProxyConfig
 {
-    public static void ConfigureProxy(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection  ConfigureProxy(this IServiceCollection services, IConfiguration configuration)
     {
         services
             .AddReverseProxy()
@@ -91,5 +91,7 @@ public static class ProxyConfig
         // Replace the default HTTP client factory used by YARP by an instance able to inject the HTTP delegating
         // handler that will be used to attach the access tokens to HTTP requests or refresh tokens if necessary.
         services.Replace(ServiceDescriptor.Singleton<IForwarderHttpClientFactory, TokenRefreshingForwarderHttpClientFactory>());
+
+        return services;
     }
 }

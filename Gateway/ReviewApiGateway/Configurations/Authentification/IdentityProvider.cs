@@ -13,7 +13,7 @@ public static class IdentityProvider
     private const string ApiGatewayClientSecret = "847862D0-DEF9-4215-A99D-86E6B8DAB342";
     private const string ApiGatewayScope = "review-api-gateway-scope";
 
-    public static void SetupIdentityProviderAuthentication(this IServiceCollection services)
+    public static IServiceCollection SetupIdentityProviderAuthentication(this IServiceCollection services)
     {
         //services.AddSingleton(s =>
         //{
@@ -51,7 +51,7 @@ public static class IdentityProvider
 
                 options.UseAspNetCore();
             });
-
+        return services;
     }
 
     private static void ConfigureClientRegistration(OpenIddictClientBuilder options)

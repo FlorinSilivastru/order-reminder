@@ -4,15 +4,12 @@ using GatewayApi.Configurations.Proxy;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.SetupCookieAuthenticationn();
-
-builder.Services.SetupIdentityProviderAuthentication();
-
-builder.Services.ConfigureProxy(builder.Configuration);
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .SetupCookieAuthenticationn()
+    .SetupIdentityProviderAuthentication()
+    .ConfigureProxy(builder.Configuration);
 
 var app = builder.Build();
 

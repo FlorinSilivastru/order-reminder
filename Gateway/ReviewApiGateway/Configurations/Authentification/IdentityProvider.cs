@@ -18,7 +18,7 @@ public static class IdentityProvider
     {
         services.AddSingleton(s =>
         {
-            return new MongoClient("mongodb://root:test@localhost:27017").GetDatabase("IdentityProvider");
+            return new MongoClient("mongodb://root:test@localhost:27099").GetDatabase("IdentityProviderGateway");
         });
 
         services

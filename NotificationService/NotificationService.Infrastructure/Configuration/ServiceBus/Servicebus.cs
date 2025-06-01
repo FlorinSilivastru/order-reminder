@@ -7,6 +7,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using NotificationService.Application.Consummers;
 using NotificationService.Infrastructure.Configuration.ServiceBus.Options;
+using Packages.Messaging.Masstransit.Services;
 using System.Reflection;
 
 public static class Servicebus

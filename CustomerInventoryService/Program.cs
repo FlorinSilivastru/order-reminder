@@ -8,6 +8,10 @@ using CustomerInventoryService.Infrastructure.Configuration.Settings;
 using CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
 using CustomerInventoryService.Infrastructure.Configuration.Validation;
 using CustomerInventoryServiceApi.Endpoints;
+using Packages.Mediatr.Configurations;
+using Packages.Middlewares.Audit;
+using Packages.Middlewares.Exceptions;
+using Packages.Middlewares.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,6 +1,6 @@
-using Middlewares.Audit;
-using Middlewares.Exceptions;
-using Middlewares.Logging;
+using Packages.Middlewares.Audit;
+using Packages.Middlewares.Exceptions;
+using Packages.Middlewares.Logging;
 using UserService.Infrastructure.Configuration.ApiVersioning;
 using UserService.Infrastructure.Configuration.Authenfication;
 using UserService.Infrastructure.Configuration.Authorization;

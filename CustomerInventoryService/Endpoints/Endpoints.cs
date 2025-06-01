@@ -5,6 +5,9 @@ using CustomerInventoryService.Application.CQRS.Commands;
 using CustomerInventoryService.Application.CQRS.Queries;
 using CustomerInventoryService.Application.CQRS.Queries.Dtos;
 using CustomerInventoryService.Infrastructure.Configuration.Authorization;
+using Packages.Mediatr.Contracts.Services;
+using Packages.Messaging.Masstransit.Contracts;
+using Packages.Messaging.Masstransit.Services;
 
 internal static class Endpoints
 {

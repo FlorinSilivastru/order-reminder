@@ -13,12 +13,15 @@ public static class IdentityProvider
     private const string ApiGatewayClientId = "review-platform-api-gateway";
     private const string ApiGatewayClientSecret = "847862D0-DEF9-4215-A99D-86E6B8DAB342";
     private const string ApiGatewayScope = "review-api-gateway-scope";
+    private const string MongoDbConnectionString = "mongodb://root:test@localhost:27099";
+    private const string IdentityProviderDatabaseName = "IdentityProviderGateway";
 
     public static IServiceCollection SetupIdentityProviderAuthentication(this IServiceCollection services)
     {
         services.AddSingleton(s =>
         {
-            return new MongoClient("mongodb://root:test@localhost:27099").GetDatabase("IdentityProviderGateway");
+            return new MongoClient(MongoDbConnectionString)
+                    .GetDatabase(IdentityProviderDatabaseName);
         });
 
         services

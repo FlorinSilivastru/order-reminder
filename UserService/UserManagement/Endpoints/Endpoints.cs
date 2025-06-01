@@ -2,6 +2,7 @@
 
 using Asp.Versioning;
 using Mediatr.Contracts.Services;
+using UserManagement.Infrastructure.Configuration.Authorization;
 
 internal static class Endpoints
 {
@@ -18,7 +19,8 @@ internal static class Endpoints
         app.MapGet("/api/v{version:apiVersion}/users-service/add", () => Results.Ok("Test middlewares"))
         .WithName("Add-User")
         .WithApiVersionSet(versionSet)
-        .MapToApiVersion(new ApiVersion(1, 0));
+        .MapToApiVersion(new ApiVersion(1, 0))
+        .RequireAuthorization(AuthorizationExtensions.AdminOnlyPolicyName);
     }
 
     private static void MapOpenApiInDevEnvironment(WebApplication app)

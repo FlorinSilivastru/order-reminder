@@ -1,6 +1,7 @@
-﻿namespace Mediatr.Contracts.Services
+﻿namespace Packages.Mediatr.Contracts.Services
 {
     using global::Mediatr.Contracts.Common;
+    using Packages.Mediatr.Contracts.Common;
 
     public interface IMediatr
     {

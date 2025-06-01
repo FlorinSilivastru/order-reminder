@@ -1,5 +1,4 @@
 using CustomerInventoryService.Application.CQRS.Commands.Handlers;
-using CustomerInventoryService.Endpoints;
 using CustomerInventoryService.Infrastructure.Configuration.ApiVersioning;
 using CustomerInventoryService.Infrastructure.Configuration.Authenfication;
 using CustomerInventoryService.Infrastructure.Configuration.Authorization;
@@ -8,6 +7,7 @@ using CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
 using CustomerInventoryService.Infrastructure.Configuration.Settings;
 using CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
 using CustomerInventoryService.Infrastructure.Configuration.Validation;
+using CustomerInventoryServiceApi.Endpoints;
 using Mediatr.Configurations;
 using Middlewares.Audit;
 using Middlewares.Exceptions;

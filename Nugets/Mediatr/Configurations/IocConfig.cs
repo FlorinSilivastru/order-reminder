@@ -1,9 +1,9 @@
-﻿namespace Mediatr.Configurations;
+﻿namespace Packages.Mediatr.Configurations;
 
 using System.Reflection;
-using global::Mediatr.Contracts.Handlers;
-using global::Mediatr.Contracts.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Packages.Mediatr.Contracts.Handlers;
+using Packages.Mediatr.Contracts.Services;
 
 public static class IocConfig
 {
@@ -32,7 +32,7 @@ public static class IocConfig
 
         foreach (var handler in handlerTypes)
         {
-                services.AddTransient(handler.Interface!, handler.Type);
+            services.AddTransient(handler.Interface!, handler.Type);
         }
     }
 }

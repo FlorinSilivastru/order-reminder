@@ -1,4 +1,4 @@
-﻿namespace UserManagement.Endpoints;
+﻿namespace UserServiceApi.Endpoints;
 
 using Asp.Versioning;
 using UserManagement.Infrastructure.Configuration.Authorization;

@@ -1,4 +1,4 @@
-﻿namespace Middlewares.Audit.Contracts
+﻿namespace Packages.Middlewares.Audit.Contracts
 {
     public class AuditEvent
     {

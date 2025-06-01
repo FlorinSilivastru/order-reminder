@@ -1,4 +1,4 @@
-﻿namespace Middlewares.Audit.Interfaces;
+﻿namespace Packages.Middlewares.Audit.Interfaces;
 
 using Middlewares.Audit.Contracts;
 

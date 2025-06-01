@@ -1,7 +1,6 @@
 using Middlewares.Audit;
 using Middlewares.Exceptions;
 using Middlewares.Logging;
-using UserManagement.Endpoints;
 using UserManagement.Infrastructure.Configuration.ApiVersioning;
 using UserManagement.Infrastructure.Configuration.Authenfication;
 using UserManagement.Infrastructure.Configuration.Authorization;
@@ -9,6 +8,7 @@ using UserManagement.Infrastructure.Configuration.Middleware;
 using UserManagement.Infrastructure.Configuration.Settings;
 using UserManagement.Infrastructure.Configuration.SwaggerUI;
 using UserManagement.Infrastructure.Configuration.Validation;
+using UserServiceApi.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 

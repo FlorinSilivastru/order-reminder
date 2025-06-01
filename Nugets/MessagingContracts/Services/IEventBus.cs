@@ -1,4 +1,4 @@
-﻿namespace Messaging.Masstransit.Services;
+﻿namespace Packages.Messaging.Masstransit.Services;
 
 using MassTransit;
 

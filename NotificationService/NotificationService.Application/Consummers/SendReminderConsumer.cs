@@ -1,7 +1,7 @@
 ﻿namespace NotificationService.Application.Consummers;
 
 using MassTransit;
-using Messaging.Masstransit.Contracts;
+using Packages.Messaging.Masstransit.Contracts;
 
 public class SendReminderConsumer : IConsumer<SendReminderMessage>
 {

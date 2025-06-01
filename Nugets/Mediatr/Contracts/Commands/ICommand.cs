@@ -1,6 +1,7 @@
-﻿namespace Mediatr.Contracts.Commands;
+﻿namespace Packages.Mediatr.Contracts.Commands;
 
 using global::Mediatr.Contracts.Common;
+using Packages.Mediatr.Contracts.Common;
 
 public interface ICommand : IRequest;
 

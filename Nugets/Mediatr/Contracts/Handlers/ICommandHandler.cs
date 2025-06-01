@@ -1,6 +1,7 @@
-﻿namespace Mediatr.Contracts.Handlers;
+﻿namespace Packages.Mediatr.Contracts.Handlers;
 
 using global::Mediatr.Contracts.Commands;
+using Packages.Mediatr.Contracts.Commands;
 
 public interface ICommandHandler<TCommand, TResponse>
     : IRequestHandler<TCommand, TResponse>

@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Nugets\Mediatr\Mediatr.csproj" />
+		<ProjectReference Include="..\..\Nugets\Mediatr\Packages.Mediatr.csproj" />
 		<ProjectReference Include="..\CustomerInventoryService.Domain\CustomerInventoryService.Domain.csproj" />
 	</ItemGroup>
 

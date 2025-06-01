@@ -1,4 +1,4 @@
-﻿namespace Middlewares.Exceptions;
+﻿namespace Packages.Middlewares.Exceptions;
 
 using System.Text.Json;
 using FluentValidation;

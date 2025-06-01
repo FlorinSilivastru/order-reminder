@@ -9,13 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Applica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Infrastructure", "NotificationService\NotificationService.Infrastructure\NotificationService.Infrastructure.csproj", "{CDC67D67-FF78-4899-9930-B106F0B6D9F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{9D3E6D4E-5D6C-414B-A813-9EEDE70F6115}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationsService", "NotificationsService", "{9D3E6D4E-5D6C-414B-A813-9EEDE70F6115}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{ACD73CEF-2875-4C05-B6BF-40C375024CFC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UsersService", "UsersService", "{ACD73CEF-2875-4C05-B6BF-40C375024CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInventoryService", "CustomerInventoryService\CustomerInventoryService.csproj", "{21638C6D-0E55-4361-BE5A-B9B411950E66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInventoryServiceApi", "CustomerInventoryService\CustomerInventoryServiceApi.csproj", "{21638C6D-0E55-4361-BE5A-B9B411950E66}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomerServices", "CustomerServices", "{F3583850-33CB-4EDB-B803-F41DDE5C5B3B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CustomerService", "CustomerService", "{F3583850-33CB-4EDB-B803-F41DDE5C5B3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInventoryService.Domain", "CustomerInventoryService\CustomerInventoryService.Domain\CustomerInventoryService.Domain.csproj", "{58BFD0A2-577F-42F8-9B08-7B79666C0630}"
 EndProject
@@ -29,21 +29,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{D87D
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{9D91509D-AC9B-4F83-B2F8-4A2EB668147D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{9D91509D-AC9B-4F83-B2F8-4A2EB668147D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayApi", "Gateway\ReviewApiGateway\GatewayApi.csproj", "{5D4955D0-3809-426A-AA1C-57A145E02CB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{7BCBF762-7E5B-4D0F-B665-1D529441A29C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationServiceAPI", "NotificationService\NotificationServiceAPI\NotificationServiceAPI.csproj", "{1EA8AC9D-E44D-4662-9BF0-1D7ADEE55620}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationServiceApi", "NotificationService\NotificationServiceAPI\NotificationServiceApi.csproj", "{1EA8AC9D-E44D-4662-9BF0-1D7ADEE55620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediatr", "Nugets\Mediatr\Mediatr.csproj", "{F31F59BE-6EEA-4F3F-BB4C-23234541E2A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Mediatr", "Nugets\Mediatr\Packages.Mediatr.csproj", "{F31F59BE-6EEA-4F3F-BB4C-23234541E2A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging.Masstransit", "Nugets\MessagingContracts\Messaging.Masstransit.csproj", "{9BA9C787-6728-42BA-87ED-8010212E443D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Messaging.Masstransit", "Nugets\MessagingContracts\Packages.Messaging.Masstransit.csproj", "{9BA9C787-6728-42BA-87ED-8010212E443D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middlewares", "Nugets\Middlewares\Middlewares.csproj", "{083661E6-0034-4869-A1FD-592AAEA813FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Middlewares", "Nugets\Middlewares\Packages.Middlewares.csproj", "{083661E6-0034-4869-A1FD-592AAEA813FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement", "UserService\UserManagement\UserManagement.csproj", "{CD99B3D3-BF20-426A-89E3-C53E781CF495}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserServiceApi", "UserService\UserManagement\UserServiceApi.csproj", "{CD99B3D3-BF20-426A-89E3-C53E781CF495}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Infrastructure", "UserService\UserManagement.Infrastructure\UserManagement.Infrastructure.csproj", "{62C0E9B2-48C0-4563-A764-25C366DFD52A}"
 EndProject

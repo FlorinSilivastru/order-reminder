@@ -1,4 +1,4 @@
-﻿namespace Middlewares.Logging;
+﻿namespace Packages.Middlewares.Logging;
 
 using Microsoft.AspNetCore.Http;
 

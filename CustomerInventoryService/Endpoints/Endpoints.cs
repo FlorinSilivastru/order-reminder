@@ -1,4 +1,4 @@
-﻿namespace CustomerInventoryService.Endpoints;
+﻿namespace CustomerInventoryServiceApi.Endpoints;
 
 using Asp.Versioning;
 using CustomerInventoryService.Application.CQRS.Commands;

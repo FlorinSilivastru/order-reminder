@@ -1,6 +1,6 @@
 ﻿namespace CustomerInventoryService.Application.CQRS.Commands.Handlers;
 
-using Mediatr.Contracts.Handlers;
+using Packages.Mediatr.Contracts.Handlers;
 
 public class AddProductCommandHandler
     : ICommandHandler<AddProductCommand>

@@ -1,4 +1,4 @@
-﻿namespace Mediatr.Contracts.Common;
+﻿namespace Packages.Mediatr.Contracts.Common;
 
 public interface IRequest;
 

@@ -2,10 +2,10 @@
 
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
 using MassTransit;
-using Messaging.Masstransit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Packages.Messaging.Masstransit.Services;
 
 public static class Servicebus
 {

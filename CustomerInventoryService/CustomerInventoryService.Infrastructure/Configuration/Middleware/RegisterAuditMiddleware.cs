@@ -2,7 +2,7 @@
 
 using CustomerInventoryService.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Middlewares.Audit.Interfaces;
+using Packages.Middlewares.Audit.Interfaces;
 
 public static class RegisterAuditMiddleware
 {

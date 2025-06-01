@@ -46,8 +46,6 @@ public static class IdentityProvider
             {
                 options.SetIssuer(identitySettings.Uri);
 
-                options.AddEncryptionKey(new SymmetricSecurityKey(
-                                                Convert.FromBase64String(identitySettings.SymmetricEncryptionKey)));
 
                 options.AddAudiences(identitySettings.ClientId);
 

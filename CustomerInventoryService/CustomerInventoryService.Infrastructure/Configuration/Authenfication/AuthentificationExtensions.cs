@@ -26,8 +26,6 @@ public static class AuthentificationExtensions
                      ValidateIssuerSigningKey = true,
                      ValidIssuer = identitySettings.Uri,
                      ValidAudience = identitySettings.Audience,
-                     IssuerSigningKey = new SymmetricSecurityKey(
-                                Convert.FromBase64String(identitySettings.SymmetricEncryptionKey)),
                  };
                  options.Events = new JwtBearerEvents
                  {

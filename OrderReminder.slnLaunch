@@ -7,15 +7,15 @@
         "Action": "Start"
       },
       {
-        "Path": "Gateway\\ReviewApiGateway\\GatewayApi.csproj",
-        "Action": "Start"
-      },
-      {
         "Path": "NotificationService\\NotificationServiceAPI\\NotificationServiceApi.csproj",
         "Action": "Start"
       },
       {
         "Path": "UserService\\UserManagement\\UserServiceApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Gateway\\GatewayApi.csproj",
         "Action": "Start"
       }
     ]

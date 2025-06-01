@@ -2,8 +2,6 @@
 
 public record IdentityProviderSettings
 {
-    public required string SymmetricEncryptionKey { get; set; }
-
     public required string Uri { get; set; }
 
     public required string Scope { get; set; }

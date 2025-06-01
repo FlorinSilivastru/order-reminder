@@ -27,6 +27,8 @@ Each microservice follows a strict layered structure:
 - 🧰 [MediatR](local package) for in-process messaging
 - ✅ [FluentValidation](https://docs.fluentvalidation.net) for request validation
 - ⚠️ Custom **Exception Handling Middleware** with logging
+- 🔍 Correlation ID middleware to enable end-to-end traceability
+- 🧾 API versioning to support future compatibility
 - 🕵️ **Audit Middleware** to trace sensitive changes
 - 🧩 **Correlation Middleware** for distributed traceability
 - 📬 [MassTransit](https://masstransit.io/) + RabbitMQ for asynchronous service communication

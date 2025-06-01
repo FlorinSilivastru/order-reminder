@@ -3,19 +3,20 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using UserManagement.Infrastructure.Configuration.Settings.Dtos;
 
 public static class AuthentificationExtensions
 {
-    private const string AuthenticationSigningKey = "DRjd/GnduI3Efzen9V9BvbNUfc/VKgXltV7Kbk9sMkY=";
-    private const string AuthenticationAuthorityUrl = "https://localhost:7110";
-    private const string AuthenticationAudience = "review-platform-api-gateway";
-
     public static IServiceCollection ConfigureAuthentification(this IServiceCollection services)
     {
+        using var provider = services.BuildServiceProvider();
+        using var scope = provider.CreateScope();
+        var identitySettings = scope.ServiceProvider.GetRequiredService<IdentityProviderSettings>();
+
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              .AddJwtBearer(options =>
              {
-                 options.Authority = AuthenticationAuthorityUrl;
+                 options.Authority = identitySettings.Uri;
 
                  options.RequireHttpsMetadata = true;
                  options.TokenValidationParameters = new TokenValidationParameters
@@ -24,10 +25,10 @@ public static class AuthentificationExtensions
                      ValidateAudience = true,
                      ValidateLifetime = true,
                      ValidateIssuerSigningKey = true,
-                     ValidIssuer = AuthenticationAuthorityUrl,
-                     ValidAudience = AuthenticationAudience,
+                     ValidIssuer = identitySettings.Uri,
+                     ValidAudience = identitySettings.Audience,
                      IssuerSigningKey = new SymmetricSecurityKey(
-                                Convert.FromBase64String(AuthenticationSigningKey)),
+                                Convert.FromBase64String(identitySettings.SymmetricEncryptionKey)),
                  };
                  options.Events = new JwtBearerEvents
                  {

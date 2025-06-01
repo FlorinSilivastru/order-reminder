@@ -5,6 +5,7 @@ using CustomerInventoryService.Infrastructure.Configuration.Authenfication;
 using CustomerInventoryService.Infrastructure.Configuration.Authorization;
 using CustomerInventoryService.Infrastructure.Configuration.Middleware;
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
+using CustomerInventoryService.Infrastructure.Configuration.Settings;
 using CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
 using CustomerInventoryService.Infrastructure.Configuration.Validation;
 using Mediatr.Configurations;
@@ -24,6 +25,7 @@ builder
     .RegisterValidation()
     .RegisterAuditLog()
     .AddHttpContextAccessor()
+    .ConfigureApplicationSettings(builder.Configuration)
     .ConfigureAuthentification()
     .ConfigureAuthorization();
 

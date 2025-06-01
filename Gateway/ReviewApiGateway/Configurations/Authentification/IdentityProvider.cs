@@ -1,5 +1,6 @@
 ﻿namespace GatewayApi.Configurations.Authentification;
 
+using GatewayApi.Configurations.Settings.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
@@ -8,20 +9,17 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 public static class IdentityProvider
 {
-    private const string SymmetricEncryptionKey = "DRjd/GnduI3Efzen9V9BvbNUfc/VKgXltV7Kbk9sMkY=";
-    private const string IdentityProviderUri = "https://localhost:7110";
-    private const string ApiGatewayClientId = "review-platform-api-gateway";
-    private const string ApiGatewayClientSecret = "847862D0-DEF9-4215-A99D-86E6B8DAB342";
-    private const string ApiGatewayScope = "review-api-gateway-scope";
-    private const string MongoDbConnectionString = "mongodb://root:test@localhost:27099";
-    private const string IdentityProviderDatabaseName = "IdentityProviderGateway";
-
     public static IServiceCollection SetupIdentityProviderAuthentication(this IServiceCollection services)
     {
+        using var provider = services.BuildServiceProvider();
+        using var scope = provider.CreateScope();
+        var identitySettings = scope.ServiceProvider.GetRequiredService<IdentityProviderSettings>();
+
         services.AddSingleton(s =>
         {
-            return new MongoClient(MongoDbConnectionString)
-                    .GetDatabase(IdentityProviderDatabaseName);
+            var localIdentityStore = s.GetRequiredService<LocalIdentityStore>();
+            return new MongoClient(localIdentityStore.MongoDbConnectionString)
+                    .GetDatabase(localIdentityStore.IdentityProviderDatabaseName);
         });
 
         services
@@ -40,16 +38,16 @@ public static class IdentityProvider
 
                 options.UseSystemNetHttp();
 
-                ConfigureClientRegistration(options);
+                ConfigureClientRegistration(options, identitySettings);
             })
             .AddValidation(options =>
             {
-                options.SetIssuer(IdentityProviderUri);
+                options.SetIssuer(identitySettings.Uri);
 
                 options.AddEncryptionKey(new SymmetricSecurityKey(
-                                Convert.FromBase64String(SymmetricEncryptionKey)));
+                                                Convert.FromBase64String(identitySettings.SymmetricEncryptionKey)));
 
-                options.AddAudiences(ApiGatewayClientId);
+                options.AddAudiences(identitySettings.ClientId);
 
                 options.UseSystemNetHttp();
 
@@ -58,15 +56,15 @@ public static class IdentityProvider
         return services;
     }
 
-    private static void ConfigureClientRegistration(OpenIddictClientBuilder options)
+    private static void ConfigureClientRegistration(OpenIddictClientBuilder options, IdentityProviderSettings identitySettings)
     {
         // Add a client registration matching the client application definition in the server project.
         options.AddRegistration(new OpenIddictClientRegistration
         {
-            Issuer = new Uri(IdentityProviderUri, UriKind.Absolute),
-            ClientId = ApiGatewayClientId,
-            ClientSecret = ApiGatewayClientSecret,
-            Scopes = { Scopes.Email, Scopes.Profile, ApiGatewayScope },
+            Issuer = new Uri(identitySettings.Uri, UriKind.Absolute),
+            ClientId = identitySettings.ClientId,
+            ClientSecret = identitySettings.ClientSecret,
+            Scopes = { Scopes.Email, Scopes.Profile, identitySettings.Scope },
 
             // Note: to mitigate mix-up attacks, it's recommended to use a unique redirection endpoint
             // URI per provider, unless all the registered providers support returning a special "iss"

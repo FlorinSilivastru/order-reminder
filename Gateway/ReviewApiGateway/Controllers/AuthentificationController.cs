@@ -14,7 +14,7 @@ public class AuthentificationController : ControllerBase
     [HttpGet("main-page")]
     public ActionResult Mainpage()
     {
-        return Redirect("www.google.com");
+        return this.RedirectToAction("login");
     }
 
     [HttpGet("login")]
@@ -29,7 +29,8 @@ public class AuthentificationController : ControllerBase
         return Challenge(properties, OpenIddictClientAspNetCoreDefaults.AuthenticationScheme);
     }
 
-    [HttpPost("logout"), ValidateAntiForgeryToken]
+    [HttpPost("logout")]
+    [ValidateAntiForgeryToken]
     public async Task<ActionResult> LogOut(string returnUrl)
     {
         // Retrieve the identity stored in the local authentication cookie. If it's not available,
@@ -69,7 +70,9 @@ public class AuthentificationController : ControllerBase
     // Note: this controller uses the same callback action for all providers
     // but for users who prefer using a different action per provider,
     // the following action can be split into separate actions.
-    [HttpGet("~/callback/login/{provider}"), HttpPost("~/callback/login/{provider}"), IgnoreAntiforgeryToken]
+    [HttpGet("~/callback/login/{provider}")]
+    [HttpPost("~/callback/login/{provider}")]
+    [IgnoreAntiforgeryToken]
     public async Task<ActionResult> LogInCallback()
     {
         // Retrieve the authorization data validated by OpenIddict as part of the callback handling.
@@ -170,7 +173,9 @@ public class AuthentificationController : ControllerBase
     // Note: this controller uses the same callback action for all providers
     // but for users who prefer using a different action per provider,
     // the following action can be split into separate actions.
-    [HttpGet("~/callback/logout/{provider}"), HttpPost("~/callback/logout/{provider}"), IgnoreAntiforgeryToken]
+    [HttpGet("~/callback/logout/{provider}")]
+    [HttpPost("~/callback/logout/{provider}")]
+    [IgnoreAntiforgeryToken]
     public async Task<ActionResult> LogOutCallback()
     {
         // Retrieve the data stored by OpenIddict in the state token created when the logout was triggered.

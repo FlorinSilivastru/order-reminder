@@ -6,6 +6,7 @@ using UserManagement.Infrastructure.Configuration.ApiVersioning;
 using UserManagement.Infrastructure.Configuration.Authenfication;
 using UserManagement.Infrastructure.Configuration.Authorization;
 using UserManagement.Infrastructure.Configuration.Middleware;
+using UserManagement.Infrastructure.Configuration.Settings;
 using UserManagement.Infrastructure.Configuration.SwaggerUI;
 using UserManagement.Infrastructure.Configuration.Validation;
 
@@ -20,7 +21,8 @@ builder
     .RegisterAuditLog()
     .AddHttpContextAccessor()
     .ConfigureAuthentification()
-    .ConfigureAuthorization();
+    .ConfigureAuthorization()
+    .ConfigureApplicationSettings(builder.Configuration);
 
 var app = builder.Build();
 

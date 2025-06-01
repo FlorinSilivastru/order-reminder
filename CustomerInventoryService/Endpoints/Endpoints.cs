@@ -28,8 +28,8 @@ internal static class Endpoints
                 => Results.Ok(await mediatr.SendAsync<GetOrderDetails, OrderDetailsDto>(query)))
         .WithName("Get-Order-Details")
         .WithApiVersionSet(versionSet)
-        .MapToApiVersion(new ApiVersion(1, 0))
-        .RequireAuthorization(AuthorizationExtensions.CustomerOnlyPolicyName);
+        .MapToApiVersion(new ApiVersion(1, 0));
+        //.RequireAuthorization(AuthorizationExtensions.CustomerOnlyPolicyName);
 
         app.MapPost("/api/v{version:apiVersion}/customer-service/add-product", async (
             AddProductCommand command,

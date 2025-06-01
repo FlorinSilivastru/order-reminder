@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder
     .Services
+    .ConfigureApplicationSettings(builder.Configuration)
     .AddOpenApi()
     .ConfigureApiVersioning()
     .ConfigureSwaggerUI()
@@ -22,7 +23,6 @@ builder
     .AddHttpContextAccessor()
     .ConfigureAuthentification()
     .ConfigureAuthorization()
-    .ConfigureApplicationSettings(builder.Configuration)
     .AddHealthChecks();
 
 var app = builder.Build();

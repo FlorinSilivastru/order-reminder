@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services
+    .ConfigureApplicationSettings(builder.Configuration)
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .ConfigureApplicationSettings(builder.Configuration)
     .SetupCookieAuthenticationn()
     .SetupIdentityProviderAuthentication()
     .ConfigureProxy(builder.Configuration)

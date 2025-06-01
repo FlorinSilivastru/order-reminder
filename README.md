@@ -1,6 +1,6 @@
 # 🛠️ Microservices Architecture Showcase
 
-This repository contains microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.
+This repository contains two microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.
 
 ---
 
@@ -27,12 +27,9 @@ Each microservice follows a strict layered structure:
 - 🧰 [MediatR](local package) for in-process messaging
 - ✅ [FluentValidation](https://docs.fluentvalidation.net) for request validation
 - ⚠️ Custom **Exception Handling Middleware** with logging
-- 🔍 Correlation ID middleware to enable end-to-end traceability
-- 🧾 API versioning to support future compatibility
 - 🕵️ **Audit Middleware** to trace sensitive changes
 - 🧩 **Correlation Middleware** for distributed traceability
 - 📬 [MassTransit](https://masstransit.io/) + RabbitMQ for asynchronous service communication
-- 📏 Code Metrics and Static Analysis using StyleCop Analyzers
 
 ---
 
@@ -50,7 +47,6 @@ Each microservice follows a strict layered structure:
 | In-process Messaging | MediatR                  |
 | API Docs             | Swagger / OpenAPI        |
 | Hosting              | Docker Compose (MongoDB, RabbitMQ for now) |
-| Code Quality         | StyleCop, SonarAnalyzer.CSharp, IDisposableAnalyzers, Code Metrics |
 
 ---
 
@@ -63,6 +59,6 @@ Each microservice follows a strict layered structure:
 - 🔄 Middleware pipeline (logging, correlation, auditing)
 - 🧪 Swagger integrated for API testing
 - 🧰 Readiness for testability and extensibility
-- 📏 Static code analysis via StyleCop, SonarAnalyzer, IDisposableAnalyzers, and built-in Code Metrics
+
 ---
 

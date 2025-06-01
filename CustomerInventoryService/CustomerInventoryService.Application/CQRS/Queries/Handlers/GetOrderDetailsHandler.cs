@@ -1,7 +1,7 @@
-﻿namespace CustomerInventoryService.Application.CQRS.Queries.Handlers;
-
-using CustomerInventoryService.Application.CQRS.Queries.Dtos;
+﻿using CustomerInventoryService.Application.CQRS.Queries.Dtos;
 using Packages.Mediatr.Contracts.Handlers;
+
+namespace CustomerInventoryService.Application.CQRS.Queries.Handlers;
 
 public class GetOrderDetailsHandler
     : IQueryHandler<GetOrderDetails, OrderDetailsDto>

@@ -1,8 +1,8 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.Settings;
-
-using CustomerInventoryService.Infrastructure.Configuration.Settings.Dtos;
+﻿using CustomerInventoryService.Infrastructure.Configuration.Settings.Dtos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+namespace CustomerInventoryService.Infrastructure.Configuration.Settings;
 
 public static class CofigureSettingsExtension
 {

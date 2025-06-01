@@ -1,6 +1,6 @@
-﻿namespace GatewayApi.Configurations.Authentification;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 
-using Microsoft.AspNetCore.Authentication.Cookies;
+namespace GatewayApi.Configurations.Authentification;
 
 public static class CookieAuth
 {

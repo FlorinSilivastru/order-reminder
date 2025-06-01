@@ -1,6 +1,6 @@
-﻿namespace Packages.Messaging.Masstransit.Services;
+﻿using MassTransit;
 
-using MassTransit;
+namespace Packages.Messaging.Masstransit.Services;
 
 public interface IEventBus
 {

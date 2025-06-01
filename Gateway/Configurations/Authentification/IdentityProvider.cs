@@ -1,11 +1,11 @@
-﻿namespace GatewayApi.Configurations.Authentification;
-
-using GatewayApi.Configurations.Settings.Dtos;
+﻿using GatewayApi.Configurations.Settings.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using OpenIddict.Client;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+
+namespace GatewayApi.Configurations.Authentification;
 
 public static class IdentityProvider
 {

@@ -1,6 +1,6 @@
-﻿namespace Packages.Mediatr.Contracts.Queries;
+﻿using Packages.Mediatr.Contracts.Common;
 
-using Packages.Mediatr.Contracts.Common;
+namespace Packages.Mediatr.Contracts.Queries;
 
 public interface IQuery<TResponse>
     : IRequest<TResponse>

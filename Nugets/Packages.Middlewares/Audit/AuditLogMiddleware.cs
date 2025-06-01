@@ -1,11 +1,11 @@
-﻿namespace Packages.Middlewares.Audit;
-
-using System.Text;
+﻿using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Packages.Middlewares.Audit.Contracts;
 using Packages.Middlewares.Audit.Interfaces;
 using Packages.Middlewares.Logging;
+
+namespace Packages.Middlewares.Audit;
 
 public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 {

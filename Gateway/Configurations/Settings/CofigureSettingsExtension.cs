@@ -1,6 +1,6 @@
-﻿namespace GatewayApi.Configurations.Settings;
+﻿using GatewayApi.Configurations.Settings.Dtos;
 
-using GatewayApi.Configurations.Settings.Dtos;
+namespace GatewayApi.Configurations.Settings;
 
 public static class CofigureSettingsExtension
 {

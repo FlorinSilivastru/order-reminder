@@ -1,9 +1,9 @@
-﻿namespace Packages.Mediatr.Configurations;
-
-using System.Reflection;
+﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Packages.Mediatr.Contracts.Handlers;
 using Packages.Mediatr.Contracts.Services;
+
+namespace Packages.Mediatr.Configurations;
 
 public static class IocConfig
 {

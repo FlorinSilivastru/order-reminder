@@ -1,7 +1,7 @@
-﻿namespace GatewayApi.Services.Token;
-
-using OpenIddict.Client;
+﻿using OpenIddict.Client;
 using Yarp.ReverseProxy.Forwarder;
+
+namespace GatewayApi.Services.Token;
 
 internal sealed class TokenRefreshingForwarderHttpClientFactory(OpenIddictClientService service)
     : ForwarderHttpClientFactory

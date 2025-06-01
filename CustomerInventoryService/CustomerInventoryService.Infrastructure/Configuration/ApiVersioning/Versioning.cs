@@ -1,7 +1,7 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.ApiVersioning;
-
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using Microsoft.Extensions.DependencyInjection;
+
+namespace CustomerInventoryService.Infrastructure.Configuration.ApiVersioning;
 
 public static class Versioning
 {

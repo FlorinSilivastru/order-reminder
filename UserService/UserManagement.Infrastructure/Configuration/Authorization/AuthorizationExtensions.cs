@@ -1,6 +1,6 @@
-﻿namespace UserService.Infrastructure.Configuration.Authorization;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-using Microsoft.Extensions.DependencyInjection;
+namespace UserService.Infrastructure.Configuration.Authorization;
 
 public static class AuthorizationExtensions
 {

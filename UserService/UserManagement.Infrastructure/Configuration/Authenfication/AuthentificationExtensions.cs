@@ -1,9 +1,9 @@
-﻿namespace UserService.Infrastructure.Configuration.Authenfication;
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using UserService.Infrastructure.Configuration.Settings.Dtos;
+
+namespace UserService.Infrastructure.Configuration.Authenfication;
 
 public static class AuthentificationExtensions
 {

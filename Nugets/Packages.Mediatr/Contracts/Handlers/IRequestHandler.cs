@@ -1,6 +1,6 @@
-﻿namespace Packages.Mediatr.Contracts.Handlers;
+﻿using Packages.Mediatr.Contracts.Common;
 
-using Packages.Mediatr.Contracts.Common;
+namespace Packages.Mediatr.Contracts.Handlers;
 
 public interface IRequestHandler<TCommand>
     where TCommand : IRequest

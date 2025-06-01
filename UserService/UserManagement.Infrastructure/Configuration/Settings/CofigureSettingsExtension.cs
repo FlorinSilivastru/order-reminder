@@ -1,8 +1,8 @@
-﻿namespace UserService.Infrastructure.Configuration.Settings;
-
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using UserService.Infrastructure.Configuration.Settings.Dtos;
+
+namespace UserService.Infrastructure.Configuration.Settings;
 
 public static class CofigureSettingsExtension
 {

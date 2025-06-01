@@ -1,6 +1,6 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.Authorization;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-using Microsoft.Extensions.DependencyInjection;
+namespace CustomerInventoryService.Infrastructure.Configuration.Authorization;
 
 public static class AuthorizationExtensions
 {

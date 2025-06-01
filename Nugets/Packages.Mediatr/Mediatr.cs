@@ -1,10 +1,10 @@
-﻿namespace Packages.Mediatr;
-
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Packages.Mediatr.Contracts.Common;
 using Packages.Mediatr.Contracts.Handlers;
 using Packages.Mediatr.Contracts.Services;
+
+namespace Packages.Mediatr;
 
 public class Mediatr(IServiceProvider serviceProvider) : IMediatr
 {

@@ -1,7 +1,7 @@
-﻿namespace Packages.Messaging.Masstransit.Services;
-
-using MassTransit;
+﻿using MassTransit;
 using Microsoft.AspNetCore.Http;
+
+namespace Packages.Messaging.Masstransit.Services;
 
 public class EventBus(
     IBus bus,

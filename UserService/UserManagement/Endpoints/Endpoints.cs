@@ -1,7 +1,7 @@
-﻿namespace UserServiceApi.Endpoints;
-
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using UserService.Infrastructure.Configuration.Authorization;
+
+namespace UserServiceApi.Endpoints;
 
 internal static class Endpoints
 {

@@ -1,6 +1,6 @@
-﻿namespace GatewayApi.Services.Token;
+﻿using static OpenIddict.Client.OpenIddictClientModels;
 
-using static OpenIddict.Client.OpenIddictClientModels;
+namespace GatewayApi.Services.Token;
 
 public sealed class TokenRefreshingHttpResponseMessage : HttpResponseMessage
 {

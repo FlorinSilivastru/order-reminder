@@ -1,11 +1,11 @@
-﻿namespace Packages.Middlewares.Exceptions;
-
-using System.Text.Json;
+﻿using System.Text.Json;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Logging;
 using Packages.Middlewares.Logging;
+
+namespace Packages.Middlewares.Exceptions;
 
 public sealed class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {

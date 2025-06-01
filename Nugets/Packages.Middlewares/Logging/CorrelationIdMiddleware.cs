@@ -1,6 +1,6 @@
-﻿namespace Packages.Middlewares.Logging;
+﻿using Microsoft.AspNetCore.Http;
 
-using Microsoft.AspNetCore.Http;
+namespace Packages.Middlewares.Logging;
 
 public class CorrelationIdMiddleware(RequestDelegate next)
 {

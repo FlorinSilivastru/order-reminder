@@ -1,6 +1,4 @@
-﻿namespace GatewayApi.Configurations.Proxy;
-
-using System.Globalization;
+﻿using System.Globalization;
 using GatewayApi.Services.Token;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,6 +7,8 @@ using Yarp.ReverseProxy.Forwarder;
 using Yarp.ReverseProxy.Transforms;
 using static OpenIddict.Client.AspNetCore.OpenIddictClientAspNetCoreConstants;
 using static OpenIddict.Client.OpenIddictClientModels;
+
+namespace GatewayApi.Configurations.Proxy;
 
 public static class ProxyConfig
 {

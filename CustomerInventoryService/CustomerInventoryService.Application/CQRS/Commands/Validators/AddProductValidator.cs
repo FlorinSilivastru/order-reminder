@@ -1,6 +1,6 @@
-﻿namespace CustomerInventoryService.Application.CQRS.Commands.Validators;
+﻿using FluentValidation;
 
-using FluentValidation;
+namespace CustomerInventoryService.Application.CQRS.Commands.Validators;
 
 public class AddProductValidator : AbstractValidator<AddProductCommand>
 {

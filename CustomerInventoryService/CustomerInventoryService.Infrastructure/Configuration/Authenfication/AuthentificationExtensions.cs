@@ -1,9 +1,9 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.Authenfication;
-
-using CustomerInventoryService.Infrastructure.Configuration.Settings.Dtos;
+﻿using CustomerInventoryService.Infrastructure.Configuration.Settings.Dtos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+
+namespace CustomerInventoryService.Infrastructure.Configuration.Authenfication;
 
 public static class AuthentificationExtensions
 {

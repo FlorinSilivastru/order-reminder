@@ -1,7 +1,7 @@
-﻿namespace Packages.Mediatr.Contracts.Services
-{
-    using Packages.Mediatr.Contracts.Common;
+﻿using Packages.Mediatr.Contracts.Common;
 
+namespace Packages.Mediatr.Contracts.Services
+{
     public interface IMediatr
     {
         Task SendAsync<T>(T command)

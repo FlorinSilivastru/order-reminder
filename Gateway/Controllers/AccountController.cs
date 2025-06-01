@@ -1,7 +1,7 @@
-namespace GatewayApi.Controllers;
-
 using GatewayApi.Configurations.Settings.Dtos;
 using Microsoft.AspNetCore.Mvc;
+
+namespace GatewayApi.Controllers;
 
 [ApiController]
 [Route("api/v1/identity/[controller]")]

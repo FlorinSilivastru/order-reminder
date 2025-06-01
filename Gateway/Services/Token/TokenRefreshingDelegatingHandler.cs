@@ -1,12 +1,12 @@
-﻿namespace GatewayApi.Services.Token;
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.Net;
 using System.Net.Http.Headers;
 using OpenIddict.Client;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using static OpenIddict.Client.AspNetCore.OpenIddictClientAspNetCoreConstants;
 using static OpenIddict.Client.OpenIddictClientModels;
+
+namespace GatewayApi.Services.Token;
 
 public sealed class TokenRefreshingDelegatingHandler(
        OpenIddictClientService service, HttpMessageHandler innerHandler)

@@ -1,11 +1,11 @@
-namespace GatewayApi.Controllers;
-
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Abstractions;
 using OpenIddict.Client.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+
+namespace GatewayApi.Controllers;
 
 [ApiController]
 [Route("api/v1/identity/[controller]")]

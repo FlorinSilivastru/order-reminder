@@ -1,6 +1,6 @@
-﻿namespace CustomerInventoryService.Application.CQRS.Commands;
+﻿using Packages.Mediatr.Contracts.Commands;
 
-using Packages.Mediatr.Contracts.Commands;
+namespace CustomerInventoryService.Application.CQRS.Commands;
 
 public record class AddProductCommand
     : ICommand

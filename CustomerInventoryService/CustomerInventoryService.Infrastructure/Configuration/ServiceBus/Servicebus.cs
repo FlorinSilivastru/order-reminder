@@ -1,11 +1,11 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
-
-using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
+﻿using CustomerInventoryService.Infrastructure.Configuration.ServiceBus.Options;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Packages.Messaging.Masstransit.Services;
+
+namespace CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
 
 public static class Servicebus
 {

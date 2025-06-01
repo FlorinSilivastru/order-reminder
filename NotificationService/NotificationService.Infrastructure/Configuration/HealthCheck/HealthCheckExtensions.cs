@@ -1,9 +1,9 @@
-﻿namespace NotificationService.Infrastructure.Configuration.HealthCheck;
-
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
+
+namespace NotificationService.Infrastructure.Configuration.HealthCheck;
 
 public static class HealthCheckExtensions
 {

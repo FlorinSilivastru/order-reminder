@@ -1,6 +1,6 @@
-﻿namespace Packages.Middlewares.Audit.Interfaces;
+﻿using Packages.Middlewares.Audit.Contracts;
 
-using Packages.Middlewares.Audit.Contracts;
+namespace Packages.Middlewares.Audit.Interfaces;
 
 public interface IAuditLogger
 {

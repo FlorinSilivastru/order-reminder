@@ -1,8 +1,8 @@
-﻿namespace UserService.Infrastructure.Configuration.Middleware;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Packages.Middlewares.Audit.Interfaces;
 using UserService.Infrastructure.Services;
+
+namespace UserService.Infrastructure.Configuration.Middleware;
 
 public static class RegisterAuditMiddleware
 {

@@ -1,4 +1,4 @@
-﻿namespace UserManagement.Infrastructure.Configuration.ApiVersioning;
+﻿namespace UserService.Infrastructure.Configuration.ApiVersioning;
 
 using Asp.Versioning;
 using Microsoft.Extensions.DependencyInjection;

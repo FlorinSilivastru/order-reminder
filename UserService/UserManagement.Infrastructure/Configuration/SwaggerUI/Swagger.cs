@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace UserManagement.Infrastructure.Configuration.SwaggerUI;
+namespace UserService.Infrastructure.Configuration.SwaggerUI;
 
 public static class Swagger
 {

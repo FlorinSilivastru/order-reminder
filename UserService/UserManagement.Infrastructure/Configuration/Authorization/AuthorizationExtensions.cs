@@ -1,4 +1,4 @@
-﻿namespace UserManagement.Infrastructure.Configuration.Authorization;
+﻿namespace UserService.Infrastructure.Configuration.Authorization;
 
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,7 +1,3 @@
-﻿namespace UserMangement.Application
-{
-    public class MockCommand
-    {
+﻿namespace UserService.Application;
 
-    }
-}
+public class MockCommand;

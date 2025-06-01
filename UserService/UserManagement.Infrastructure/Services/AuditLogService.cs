@@ -1,7 +1,7 @@
-﻿namespace UserManagement.Infrastructure.Services;
+﻿namespace UserService.Infrastructure.Services;
 
-using Middlewares.Audit.Contracts;
-using Middlewares.Audit.Interfaces;
+using Packages.Middlewares.Audit.Contracts;
+using Packages.Middlewares.Audit.Interfaces;
 
 public class AuditLogService() : IAuditLogger
 {

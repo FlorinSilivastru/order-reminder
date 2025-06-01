@@ -1,8 +1,8 @@
-﻿namespace UserManagement.Infrastructure.Configuration.Validation;
+﻿namespace UserService.Infrastructure.Configuration.Validation;
 
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using UserMangement.Application;
+using UserService.Application;
 
 public static class ValidationRegistration
 {

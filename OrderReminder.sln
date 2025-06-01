@@ -45,9 +45,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Middlewares", "Nug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserServiceApi", "UserService\UserManagement\UserServiceApi.csproj", "{CD99B3D3-BF20-426A-89E3-C53E781CF495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.Infrastructure", "UserService\UserManagement.Infrastructure\UserManagement.Infrastructure.csproj", "{62C0E9B2-48C0-4563-A764-25C366DFD52A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "UserService\UserManagement.Infrastructure\UserService.Infrastructure.csproj", "{62C0E9B2-48C0-4563-A764-25C366DFD52A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserMangement.Application", "UserService\UserMangement.Application\UserMangement.Application.csproj", "{B7B2CD47-8DD4-4167-82C3-931F281F338E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Application", "UserService\UserMangement.Application\UserService.Application.csproj", "{B7B2CD47-8DD4-4167-82C3-931F281F338E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

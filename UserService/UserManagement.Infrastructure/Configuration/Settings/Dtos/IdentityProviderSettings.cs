@@ -1,4 +1,4 @@
-﻿namespace UserManagement.Infrastructure.Configuration.Settings.Dtos;
+﻿namespace UserService.Infrastructure.Configuration.Settings.Dtos;
 
 public record IdentityProviderSettings
 {

@@ -1,9 +1,6 @@
 ﻿namespace Packages.Mediatr;
 
 using FluentValidation;
-using global::Mediatr.Contracts.Common;
-using global::Mediatr.Contracts.Handlers;
-using global::Mediatr.Contracts.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Packages.Mediatr.Contracts.Common;
 using Packages.Mediatr.Contracts.Handlers;

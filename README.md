@@ -32,6 +32,7 @@ Each microservice follows a strict layered structure:
 - 🕵️ **Audit Middleware** to trace sensitive changes
 - 🧩 **Correlation Middleware** for distributed traceability
 - 📬 [MassTransit](https://masstransit.io/) + RabbitMQ for asynchronous service communication
+- 📏 Code Metrics and Static Analysis using StyleCop Analyzers
 
 ---
 
@@ -49,6 +50,7 @@ Each microservice follows a strict layered structure:
 | In-process Messaging | MediatR                  |
 | API Docs             | Swagger / OpenAPI        |
 | Hosting              | Docker Compose (MongoDB, RabbitMQ for now) |
+| Code Quality         | StyleCop, SonarAnalyzer.CSharp, IDisposableAnalyzers, Code Metrics |
 
 ---
 
@@ -61,6 +63,6 @@ Each microservice follows a strict layered structure:
 - 🔄 Middleware pipeline (logging, correlation, auditing)
 - 🧪 Swagger integrated for API testing
 - 🧰 Readiness for testability and extensibility
-
+- 📏 Static code analysis via StyleCop, SonarAnalyzer, IDisposableAnalyzers, and built-in Code Metrics
 ---
 

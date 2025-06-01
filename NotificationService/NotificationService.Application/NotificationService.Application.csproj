@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MessagingContracts\Messaging.Masstransit.csproj" />
+    <ProjectReference Include="..\..\Nugets\MessagingContracts\Messaging.Masstransit.csproj" />
     <ProjectReference Include="..\NotificationService.Domain\NotificationService.Domain.csproj" />
   </ItemGroup>
 

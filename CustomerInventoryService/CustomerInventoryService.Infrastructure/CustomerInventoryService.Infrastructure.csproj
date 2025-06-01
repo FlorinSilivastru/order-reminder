@@ -8,6 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
@@ -15,6 +18,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Middlewares\Middlewares.csproj" />
+		<ProjectReference Include="..\..\Nugets\MessagingContracts\Messaging.Masstransit.csproj" />
+		<ProjectReference Include="..\..\Nugets\Middlewares\Middlewares.csproj" />
 		<ProjectReference Include="..\CustomerInventoryService.Application\CustomerInventoryService.Application.csproj" />
 	</ItemGroup>
 

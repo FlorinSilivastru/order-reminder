@@ -1,8 +1,8 @@
-﻿namespace CustomerInventoryService.Infrastructure.Configuration.Middleware;
+﻿namespace UserManagement.Infrastructure.Configuration.Middleware;
 
-using CustomerInventoryService.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Middlewares.Audit.Interfaces;
+using UserManagement.Infrastructure.Services;
 
 public static class RegisterAuditMiddleware
 {

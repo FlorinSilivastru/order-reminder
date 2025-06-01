@@ -11,7 +11,7 @@ public static class Servicebus
 {
     private const string ServiceBusKey = "ServiceBus";
 
-    public static void ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
     {
         var servicebusOptions = services.ConfigureAndGetServiceBusOption(configuration);
 
@@ -26,6 +26,8 @@ public static class Servicebus
         });
 
         services.AddTransient<IEventBus, EventBus>();
+
+        return services;
     }
 
     private static void ConfigureEndpointNaming(this IBusRegistrationConfigurator configurator)

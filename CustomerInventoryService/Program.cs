@@ -1,7 +1,9 @@
 using CustomerInventoryService.Application.CQRS.Commands.Handlers;
 using CustomerInventoryService.Endpoints;
+using CustomerInventoryService.Infrastructure.Configuration.ApiVersioning;
 using CustomerInventoryService.Infrastructure.Configuration.Middleware;
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
+using CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
 using CustomerInventoryService.Infrastructure.Configuration.Validation;
 using Mediatr.Configurations;
 using Middlewares.Audit;
@@ -10,14 +12,16 @@ using Middlewares.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
-
-builder.Services.ConfigureMassTransit(builder.Configuration);
-builder.Services.RegisterMediatr(typeof(AddProductCommandHandler).Assembly);
-builder.Services.RegisterValidation();
-builder.Services.RegisterAuditLog();
-
-builder.Services.AddHttpContextAccessor();
+builder
+    .Services
+    .AddOpenApi()
+    .ConfigureApiVersioning()
+    .ConfigureSwaggerUI()
+    .ConfigureMassTransit(builder.Configuration)
+    .RegisterMediatr(typeof(AddProductCommandHandler).Assembly)
+    .RegisterValidation()
+    .RegisterAuditLog()
+    .AddHttpContextAccessor();
 
 var app = builder.Build();
 

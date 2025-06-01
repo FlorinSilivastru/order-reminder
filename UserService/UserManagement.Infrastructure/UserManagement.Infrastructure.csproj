@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.3.0">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="OpenIddict" Version="6.0.0-rc1.24608.69">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="OpenIddict.AspNetCore" Version="6.0.0-rc1.24608.69">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="OpenIddict.MongoDb" Version="6.0.0-rc1.24608.69">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Nugets\Mediatr\Mediatr.csproj" />
+		<ProjectReference Include="..\..\Nugets\Middlewares\Middlewares.csproj" />
+		<ProjectReference Include="..\UserMangement.Application\UserMangement.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="MilestoneCSharpAnalyzers">
+	    <TreatAsUsed>true</TreatAsUsed>
+	  </PackageReference>
+	</ItemGroup>
+
+</Project>

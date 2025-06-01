@@ -1,5 +1,6 @@
 ﻿namespace CustomerInventoryService.Endpoints;
 
+using Asp.Versioning;
 using CustomerInventoryService.Application.CQRS.Commands;
 using CustomerInventoryService.Application.CQRS.Queries;
 using CustomerInventoryService.Application.CQRS.Queries.Dtos;
@@ -13,13 +14,22 @@ internal static class Endpoints
     {
         MapOpenApiInDevEnvironment(app);
 
-        app.MapGet("/getOrderDetails", async (
+
+        var versionSet = app.NewApiVersionSet()
+        .HasApiVersion(new ApiVersion(1, 0))
+        .HasApiVersion(new ApiVersion(2, 0))
+        .ReportApiVersions()
+        .Build();
+
+        app.MapGet("/api/v{version:apiVersion}/getOrderDetails", async (
                 [AsParameters] GetOrderDetails query,
                 IMediatr mediatr)
                 => Results.Ok(await mediatr.SendAsync<GetOrderDetails, OrderDetailsDto>(query)))
-        .WithName("Get-Order-Details");
+        .WithName("Get-Order-Details")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(new ApiVersion(1, 0));
 
-        app.MapPost("/add-product", async (
+        app.MapPost("/api/v{version:apiVersion}/add-product", async (
             AddProductCommand command,
             IEventBus bus,
             IMediatr mediatr) =>
@@ -30,7 +40,9 @@ internal static class Endpoints
                     OrderId = Guid.NewGuid(),
                 });
             })
-        .WithName("Add-Product");
+        .WithName("Add-Product")
+        .WithApiVersionSet(versionSet)
+        .MapToApiVersion(new ApiVersion(1, 0));
     }
 
     private static void MapOpenApiInDevEnvironment(WebApplication app)
@@ -38,6 +50,8 @@ internal static class Endpoints
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
     }
 }

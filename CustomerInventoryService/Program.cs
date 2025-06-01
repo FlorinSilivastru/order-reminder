@@ -27,7 +27,8 @@ builder
     .AddHttpContextAccessor()
     .ConfigureApplicationSettings(builder.Configuration)
     .ConfigureAuthentification()
-    .ConfigureAuthorization();
+    .ConfigureAuthorization()
+    .AddHealthChecks();
 
 var app = builder.Build();
 

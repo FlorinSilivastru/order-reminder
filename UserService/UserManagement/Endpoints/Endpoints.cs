@@ -1,15 +1,21 @@
 ﻿namespace UserManagement.Endpoints;
 
 using Asp.Versioning;
-using Mediatr.Contracts.Services;
 using UserManagement.Infrastructure.Configuration.Authorization;
 
 internal static class Endpoints
 {
     public static void RegisterEndpoints(this WebApplication app)
     {
-        MapOpenApiInDevEnvironment(app);
+        app.MapHealthChecks("/healthCheck");
 
+        app.MapOpenApiInDevEnvironment();
+
+        app.ConfigureUserServiceRoutes();
+    }
+
+    private static void ConfigureUserServiceRoutes(this WebApplication app)
+    {
         var versionSet = app.NewApiVersionSet()
         .HasApiVersion(new ApiVersion(1, 0))
         .HasApiVersion(new ApiVersion(2, 0))
@@ -23,7 +29,7 @@ internal static class Endpoints
         .RequireAuthorization(AuthorizationExtensions.AdminOnlyPolicyName);
     }
 
-    private static void MapOpenApiInDevEnvironment(WebApplication app)
+    private static void MapOpenApiInDevEnvironment(this WebApplication app)
     {
         if (app.Environment.IsDevelopment())
         {

@@ -5,20 +5,21 @@ using MassTransit;
 using Messaging.Masstransit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using NotificationService.Application.Consummers;
 using NotificationService.Infrastructure.Configuration.ServiceBus.Options;
 
 public static class Servicebus
 {
-    private const string ServiceBusKey = "ServiceBus";
-
-    public static void ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureMassTransit(this IServiceCollection services, IConfiguration configuration)
     {
         var servicebusOptions = services.ConfigureAndGetServiceBusOption(configuration);
 
         services.AddMassTransit<IBus>(x =>
         {
+            x.ConfigureHealthChecks();
+
             x.RegisterConsummers();
 
             x.ConfigureEndpointNaming();
@@ -32,6 +33,18 @@ public static class Servicebus
         });
 
         services.AddTransient<IEventBus, EventBus>();
+
+        return services;
+    }
+
+    private static void ConfigureHealthChecks(this IBusRegistrationConfigurator x)
+    {
+        x.ConfigureHealthCheckOptions(options =>
+        {
+            options.Name = "masstransit";
+            options.MinimalFailureStatus = HealthStatus.Unhealthy;
+            options.Tags.Add("health");
+        });
     }
 
     private static void RegisterConsummers(this IBusRegistrationConfigurator configurator)
@@ -48,7 +61,7 @@ public static class Servicebus
     private static ServiceBusConfigOptions ConfigureAndGetServiceBusOption(this IServiceCollection services, IConfiguration configuration)
     {
         services
-         .Configure<ServiceBusConfigOptions>(configuration.GetSection(ServiceBusKey))
+         .Configure<ServiceBusConfigOptions>(configuration.GetSection(nameof(ServiceBusConfigOptions)))
          .AddSingleton(serviceProvider => serviceProvider.GetRequiredService<IOptions<ServiceBusConfigOptions>>().Value);
 
         using var provider = services.BuildServiceProvider();

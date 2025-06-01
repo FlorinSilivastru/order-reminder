@@ -10,8 +10,7 @@ public static class AuthentificationExtensions
     public static IServiceCollection ConfigureAuthentification(this IServiceCollection services)
     {
         using var provider = services.BuildServiceProvider();
-        using var scope = provider.CreateScope();
-        var identitySettings = scope.ServiceProvider.GetRequiredService<IdentityProviderSettings>();
+        var identitySettings = provider.GetRequiredService<IdentityProviderSettings>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
              .AddJwtBearer(options =>

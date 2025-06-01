@@ -11,7 +11,8 @@ builder.Services
     .ConfigureApplicationSettings(builder.Configuration)
     .SetupCookieAuthenticationn()
     .SetupIdentityProviderAuthentication()
-    .ConfigureProxy(builder.Configuration);
+    .ConfigureProxy(builder.Configuration)
+    .AddHealthChecks();
 
 var app = builder.Build();
 
@@ -25,6 +26,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapHealthChecks("/healthCheck");
 
 app.UseAuthentication();
 

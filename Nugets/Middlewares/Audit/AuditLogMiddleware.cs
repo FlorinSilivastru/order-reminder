@@ -10,7 +10,7 @@ using System.Text;
 public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 {
     private const string AnonymousUser = "Anonymous";
-    private static readonly string[] ExclusionPaths = ["HealthCheck", "/"];
+    private static readonly string[] ExclusionPaths = ["healthCheck", "/"];
 
     public async Task InvokeAsync(HttpContext context)
     {

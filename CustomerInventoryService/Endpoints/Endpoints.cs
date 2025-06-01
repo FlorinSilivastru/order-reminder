@@ -13,9 +13,15 @@ internal static class Endpoints
 {
     public static void RegisterEndpoints(this WebApplication app)
     {
-        MapOpenApiInDevEnvironment(app);
+        app.MapHealthChecks("/healthCheck");
 
+        app.MapOpenApiInDevEnvironment();
 
+        app.MapCustomerServiceEndpoints();
+    }
+
+    private static void MapCustomerServiceEndpoints(this WebApplication app)
+    {
         var versionSet = app.NewApiVersionSet()
         .HasApiVersion(new ApiVersion(1, 0))
         .HasApiVersion(new ApiVersion(2, 0))
@@ -35,20 +41,20 @@ internal static class Endpoints
             AddProductCommand command,
             IEventBus bus,
             IMediatr mediatr) =>
+        {
+            await mediatr.SendAsync(command);
+            await bus.PublishAsync(new SendReminderMessage
             {
-                await mediatr.SendAsync(command);
-                await bus.PublishAsync(new SendReminderMessage
-                {
-                    OrderId = Guid.NewGuid(),
-                });
-            })
+                OrderId = Guid.NewGuid(),
+            });
+        })
         .WithName("Add-Product")
         .WithApiVersionSet(versionSet)
         .MapToApiVersion(new ApiVersion(1, 0))
         .RequireAuthorization(AuthorizationExtensions.CustomerOnlyPolicyName);
     }
 
-    private static void MapOpenApiInDevEnvironment(WebApplication app)
+    private static void MapOpenApiInDevEnvironment(this WebApplication app)
     {
         if (app.Environment.IsDevelopment())
         {

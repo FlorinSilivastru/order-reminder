@@ -1,6 +1,6 @@
 # 🛠️ Microservices Architecture Showcase
 
-This repository contains two microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.
+This repository contains microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.
 
 ---
 

@@ -1,166 +1,68 @@
-# order-reminder
-Inventory Prediction &amp; Notification System
+# 🛠️ Microservices Architecture Showcase
 
-Description:
-A web-based system for retailers to manage cosmetic inventory. The system predicts when a customer’s products will run out based on average usage and sends manager notifications and customer email reminders, optionally offering discounts. The application is built using a microservice architecture, leveraging a service bus for asynchronous communication.
+This repository contains microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.
 
-🧩 Functional Requirements
-1. Authentication & Authorization Service
-User registration (admin adds retailers)
+---
 
-  JWT-based login
-  
-  Role-based access: Admin, Retailer
-  
-  User management (for Admin only)
+## 📦 Overview
 
-2. Product Inventory Service
-  CRUD operations for cosmetic products
+This solution simulates an **order tracking and product notification system**:
 
-Fields:
+- 🧾 When an **order is created**, the system evaluates product quantity, usage history, and triggers **reorder notifications** if needed.
+- 🔐 Includes a **User Service** for authentication (via cookie-based auth) and token issuance (via bearer tokens).
+- ⚙️ All services follow **clean architecture** and are designed for scale and maintainability.
 
-  Product name
-  
-  Brand
-  
-  Initial quantity
-  
-  Current quantity
-  
-  Avg daily usage
-  
-  Customer email
-  
-  Last updated date
-  
-  Assign products to a retailer
+---
 
-3. Usage & Prediction Service
-  Background job (runs daily)
-  
-  Calculates predicted depletion date = Current Quantity / Avg Daily Usage
-  
-  Emits ProductDepletionPredictedEvent when product is expected to run out within threshold (e.g., 5 days)
-  
-  Rules engine for business logic (e.g., buffer days, min stock levels)
+## 🧱 Architecture Highlights
 
-4. Notification Service
-  Listens to ProductDepletionPredictedEvent
+Each microservice follows a strict layered structure:
 
-  Sends email to:
-  
-  Retailer (with product info, customer email, prediction)
-  
-  Customer (reminder + optional discount offer)
-  
-  Uses a simple SMTP or dummy email interface (plug-in ready for SendGrid)
+- `Domain` — business logic and core models
+- `Application` — CQRS handlers, interfaces, and use cases
+- `Infrastructure` — data access, messaging, external integrations
+- `API` — thin HTTP layer with controllers or minimal API endpoints
 
-5. Admin Analytics Service
-Tracks:
+✅ Implemented Patterns:
+- 🧰 [MediatR](local package) for in-process messaging
+- ✅ [FluentValidation](https://docs.fluentvalidation.net) for request validation
+- ⚠️ Custom **Exception Handling Middleware** with logging
+- 🔍 Correlation ID middleware to enable end-to-end traceability
+- 🧾 API versioning to support future compatibility
+- 🕵️ **Audit Middleware** to trace sensitive changes
+- 🧩 **Correlation Middleware** for distributed traceability
+- 📬 [MassTransit](https://masstransit.io/) + RabbitMQ for asynchronous service communication
+- 📏 Code Metrics and Static Analysis using StyleCop Analyzers
 
-  Most used products
-  
-  Avg depletion times
-  
-  Customers likely to reorder
-  
-  Dashboard API for charts and data visualization
+---
 
-💻 Frontend Requirements (Angular)
-Retailer Dashboard
-  Login/Register
-  
-  Add/edit/delete cosmetics
-  
-  Track inventory levels
-  
-  View predictions and customer contact info
-  
-  Admin Dashboard
-  View all retailers
-  
-  See product trends
-  
-  Manage users
-  
-  Analytics (charts, low stock, usage history)
+## 🛠️ Tech Stack
 
-📬 Service Bus Integration
-  Use RabbitMQ or MassTransit
-  
-  Event Contracts:
-  
-  ProductDepletionPredictedEvent
-  
-  ProductId
-  
-  RetailerId
-  
-  CustomerEmail
-  
-  PredictedDepletionDate
-  
-  CurrentStock
-  
-  (Future) EmailSentEvent, RuleMatchedEvent
+| Area                 | Tech                     |
+|----------------------|--------------------------|
+| Language             | C# (.NET 9)              |
+| Web Framework        | ASP.NET Core Minimal API |
+| Messaging            | RabbitMQ + MassTransit   |
+| Storage              | MongoDB (now), SQL (planned) |
+| Gateway              | YARP Reverse Proxy       |
+| Auth                 | Identity Provider (cookies + bearer) |
+| Validation           | FluentValidation         |
+| In-process Messaging | MediatR                  |
+| API Docs             | Swagger / OpenAPI        |
+| Hosting              | Docker Compose (MongoDB, RabbitMQ for now) |
+| Code Quality         | StyleCop, SonarAnalyzer.CSharp, IDisposableAnalyzers, Code Metrics |
 
-🧱 Architecture Summary
-Microservices
-  Service	Responsibilities
-  Auth Service	Login, JWT, roles
-  Inventory Service	Cosmetics CRUD, track usage
-  Prediction Service	Depletion logic, rule engine, emit events
-  Notification Service	Listens, composes and sends email
-  Admin Analytics Service	Reporting, trends, chart APIs
+---
 
-  Tech Stack
-  Layer	Tech
-  Frontend	Angular 15+, Angular Material, RxJS
-  Backend	.NET 7+, EF Core, REST APIs
-  Messaging	RabbitMQ or MassTransit
-  Auth	JWT, ASP.NET Core Identity
-  Data Store	InMemory → SQL Server (later)
-  Deployment	Local containers or cloud (optional)
+## 🚀 Features Implemented
 
-🗂️ Non-Functional Requirements
-  Responsive Web App
-  
-  Email delivery within 5 seconds of event
-  
-  Scalable microservices with independent deployments
-  
-  Easily pluggable email provider
-  
-  Configurable alert thresholds
-  
-  ✅ Optional Stretch Goals (for showcase value)
-  PWA support for retailer dashboard
-  
-  Multi-language support
-  
-  Admin-triggered manual promotional emails
-  
-  User audit logs (who added what product/when)
-  
-  Discount engine (for email templates)
+- ✅ Clean architecture in services
+- 🔗 Async communication via RabbitMQ & MassTransit
+- 🔐 Secure gateway with mixed authentication modes
+- ♻️ Health check endpoints for each service
+- 🔄 Middleware pipeline (logging, correlation, auditing)
+- 🧪 Swagger integrated for API testing
+- 🧰 Readiness for testability and extensibility
+- 📏 Static code analysis via StyleCop, SonarAnalyzer, IDisposableAnalyzers, and built-in Code Metrics
+---
 
-🏁 Implementation Order
-  Auth Service
-  
-  Frontend: Login + Role-based routing
-  
-  Inventory Service + UI
-  
-  Prediction Engine (background job + rules)
-  
-  Service Bus setup
-  
-  Notification Service
-  
-  Email templates
-  
-  Analytics service
-  
-  Admin Dashboard UI
-  
-  End-to-end integration testing

@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿namespace CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
 
-namespace CustomerInventoryService.Infrastructure.Configuration.SwaggerUI;
+using Microsoft.Extensions.DependencyInjection;
 
 public static class Swagger
 {

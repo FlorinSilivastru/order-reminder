@@ -6,10 +6,10 @@
 
         public DateTime OrderDate { get; init; }
 
-        public string OrderNumber { get; init; }
+        public string? OrderNumber { get; init; }
 
         public decimal OrderAmount { get; init; }
 
-        public string EmailAddress { get; init; }
+        public string? EmailAddress { get; init; }
     }
 }

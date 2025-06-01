@@ -18,8 +18,10 @@ public static class IdentityProvider
         services.AddSingleton(s =>
         {
             var localIdentityStore = s.GetRequiredService<LocalIdentityStore>();
+#pragma warning disable IDISP004 // Don't ignore created IDisposable
             return new MongoClient(localIdentityStore.MongoDbConnectionString)
                     .GetDatabase(localIdentityStore.IdentityProviderDatabaseName);
+#pragma warning restore IDISP004 // Don't ignore created IDisposable
         });
 
         services

@@ -9,5 +9,4 @@ public record IdentityProviderSettings
     public required string Scope { get; set; }
 
     public required string Audience { get; set; }
-
 }

@@ -1,5 +1,6 @@
 ﻿namespace NotificationService.Infrastructure.Configuration.ServiceBus;
 
+using System.Reflection;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.Options;
 using NotificationService.Application.Consummers;
 using NotificationService.Infrastructure.Configuration.ServiceBus.Options;
 using Packages.Messaging.Masstransit.Services;
-using System.Reflection;
 
 public static class Servicebus
 {

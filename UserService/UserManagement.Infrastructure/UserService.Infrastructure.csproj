@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Nugets\Middlewares\Packages.Middlewares.csproj" />
+	  <ProjectReference Include="..\..\Nugets\Packages.Middlewares\Packages.Middlewares.csproj" />
 	  <ProjectReference Include="..\UserMangement.Application\UserService.Application.csproj" />
 	</ItemGroup>
 

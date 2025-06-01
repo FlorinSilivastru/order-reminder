@@ -9,7 +9,7 @@ using static OpenIddict.Client.AspNetCore.OpenIddictClientAspNetCoreConstants;
 using static OpenIddict.Client.OpenIddictClientModels;
 
 public sealed class TokenRefreshingDelegatingHandler(
-       OpenIddictClientService service, HttpMessageHandler innerHandler) 
+       OpenIddictClientService service, HttpMessageHandler innerHandler)
     : DelegatingHandler(innerHandler)
 {
     private readonly OpenIddictClientService service = service ?? throw new ArgumentNullException(nameof(service));
@@ -26,7 +26,9 @@ public sealed class TokenRefreshingDelegatingHandler(
         {
             request.Headers.Authorization = new AuthenticationHeaderValue(Schemes.Bearer, GetBackchannelAccessToken(request.Options));
 
+#pragma warning disable IDISP001 // Dispose created
             var response = await base.SendAsync(request, cancellationToken);
+#pragma warning restore IDISP001 // Dispose created
             if (response.StatusCode is not HttpStatusCode.Unauthorized)
             {
                 return response;
@@ -55,7 +57,7 @@ public sealed class TokenRefreshingDelegatingHandler(
             {
                 CancellationToken = cancellationToken,
                 DisableUserInfo = true,
-                RefreshToken = GetRefreshToken(request.Options)
+                RefreshToken = GetRefreshToken(request.Options),
             });
 
             request.Headers.Authorization = new AuthenticationHeaderValue(Schemes.Bearer, result.AccessToken);
@@ -63,6 +65,7 @@ public sealed class TokenRefreshingDelegatingHandler(
             return new TokenRefreshingHttpResponseMessage(result, await base.SendAsync(request, cancellationToken));
         }
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         static string GetBackchannelAccessToken(HttpRequestOptions options) =>
             options.TryGetValue(new(Tokens.BackchannelIdentityToken), out string token) ? token :
             throw new InvalidOperationException("The access token couldn't be found in the request options.");
@@ -74,5 +77,6 @@ public sealed class TokenRefreshingDelegatingHandler(
         static string GetRefreshToken(HttpRequestOptions options) =>
             options.TryGetValue(new(Tokens.RefreshToken), out string token) ? token :
             throw new InvalidOperationException("The refresh token couldn't be found in the request options.");
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
     }
 }

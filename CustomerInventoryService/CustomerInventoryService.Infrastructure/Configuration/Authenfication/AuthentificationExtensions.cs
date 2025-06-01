@@ -44,7 +44,7 @@ public static class AuthentificationExtensions
                          return Task.CompletedTask;
                      },
                  };
-             }); ;
+             });
 
         services.AddAuthorization();
 

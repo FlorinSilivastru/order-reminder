@@ -5,7 +5,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Logging;
-using Middlewares.Logging;
+using Packages.Middlewares.Logging;
 
 public sealed class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {
@@ -96,5 +96,4 @@ public sealed class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionM
 
         return context.TraceIdentifier;
     }
-
 }

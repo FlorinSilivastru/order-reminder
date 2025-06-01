@@ -18,8 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Nugets\MessagingContracts\Packages.Messaging.Masstransit.csproj" />
-		<ProjectReference Include="..\..\Nugets\Middlewares\Packages.Middlewares.csproj" />
+		<ProjectReference Include="..\..\Nugets\Packages.Middlewares\Packages.Middlewares.csproj" />
 		<ProjectReference Include="..\CustomerInventoryService.Application\CustomerInventoryService.Application.csproj" />
 	</ItemGroup>
 

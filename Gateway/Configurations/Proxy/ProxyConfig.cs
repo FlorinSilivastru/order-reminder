@@ -12,7 +12,7 @@ using static OpenIddict.Client.OpenIddictClientModels;
 
 public static class ProxyConfig
 {
-    public static IServiceCollection  ConfigureProxy(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureProxy(this IServiceCollection services, IConfiguration configuration)
     {
         services
             .AddReverseProxy()
@@ -26,7 +26,6 @@ public static class ProxyConfig
                     // to the request message or used to refresh the tokens if the server returned a 401 error response.
                     //
                     // Alternatively, the user tokens could be stored in a database or a distributed cache.
-
                     var result = await context.HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
                     context.ProxyRequest.Options.Set(
@@ -53,11 +52,12 @@ public static class ProxyConfig
                     // to the authentication cookie that will be returned to the browser: doing that is essential as
                     // OpenIddict uses rolling refresh tokens: if the refresh token wasn't replaced, future refresh
                     // token requests would end up being rejected as they would be treated as replayed requests.
-
                     if (context.ProxyResponse is not TokenRefreshingHttpResponseMessage
                         {
                             RefreshTokenAuthenticationResult: RefreshTokenAuthenticationResult
-                        } response)
+                        }
+
+                        response)
                     {
                         return;
                     }
@@ -68,8 +68,9 @@ public static class ProxyConfig
                     var properties = result?.Properties?.Clone();
                     properties?.UpdateTokenValue(Tokens.BackchannelAccessToken, response.RefreshTokenAuthenticationResult.AccessToken);
 
-                    properties?.UpdateTokenValue(Tokens.BackchannelAccessTokenExpirationDate,
-                        response?.RefreshTokenAuthenticationResult?.AccessTokenExpirationDate?.ToString(CultureInfo.InvariantCulture) ?? "");
+                    properties?.UpdateTokenValue(
+                        Tokens.BackchannelAccessTokenExpirationDate,
+                        response?.RefreshTokenAuthenticationResult?.AccessTokenExpirationDate?.ToString(CultureInfo.InvariantCulture) ?? string.Empty);
 
                     // Note: if no refresh token was returned, preserve the refresh token initially returned.
                     if (!string.IsNullOrEmpty(response?.RefreshTokenAuthenticationResult.RefreshToken))
@@ -79,12 +80,15 @@ public static class ProxyConfig
 
                     // Remove the redirect URI from the authentication properties
                     // to prevent the cookies handler from genering a 302 response.
-                    properties.RedirectUri = null;
+                    if (properties is not null)
+                    {
+                        properties.RedirectUri = null;
+                    }
 
                     // Note: this event handler can be called concurrently for the same user if multiple HTTP
                     // responses are returned in parallel: in this case, the browser will always store the latest
                     // cookie received and the refresh tokens stored in the other cookies will be discarded.
-                    await context.HttpContext.SignInAsync(result?.Ticket?.AuthenticationScheme, result?.Principal, properties);
+                    await context.HttpContext.SignInAsync(result?.Ticket?.AuthenticationScheme, result?.Principal ?? new(), properties);
                 });
             });
 

@@ -76,7 +76,6 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
      string correlationId,
      IAuditLogger auditLogger)
     {
-        var originalBody = request.Body;
         using var buffer = new MemoryStream();
         await request.Body.CopyToAsync(buffer);
 
@@ -99,7 +98,6 @@ public class AuditLogMiddleware(RequestDelegate next, IAuditLogger auditLogger)
 
         await auditLogger.LogAsync(audit);
     }
-
 
     private static string? GetClientIpAddress(HttpRequest request)
     {

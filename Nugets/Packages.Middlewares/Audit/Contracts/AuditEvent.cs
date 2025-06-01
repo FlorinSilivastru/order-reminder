@@ -4,7 +4,7 @@
     {
         public Guid AuditID { get; set; }
 
-        public string Url { get; set; }
+        public string? Url { get; set; }
 
         public string? IpAddress { get; set; }
 

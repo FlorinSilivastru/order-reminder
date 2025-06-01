@@ -40,7 +40,6 @@ public class Mediatr(IServiceProvider serviceProvider) : IMediatr
     private static async Task ValidatePayload<T>(T command, AsyncServiceScope scope)
         where T : IRequest
     {
-
         var validator = scope.ServiceProvider.GetService<IValidator<T>>();
 
         if (validator is not null)

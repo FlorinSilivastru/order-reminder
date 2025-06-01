@@ -1,0 +1,53 @@
+<Project>
+	<PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj' AND '$(Configuration)' == 'Release'">
+		<!-- Ideally this is always enabled, but that tends to hurt developer productivity -->
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition=" $(_SkipCodeAnalyzers) == true OR '$(MSBuildProjectExtension)' != '.csproj' ">
+		<EnableNETAnalyzers>false</EnableNETAnalyzers>
+		<AnalysisLevel>none</AnalysisLevel>
+		<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+		<RunAnalyzers>false</RunAnalyzers>
+	</PropertyGroup>
+	<PropertyGroup Condition=" $(_SkipCodeAnalyzers) != true AND '$(MSBuildProjectExtension)' == '.csproj' ">
+		<EnableNETAnalyzers>true</EnableNETAnalyzers>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+	<PropertyGroup>
+		<IncludeInSolutionFilter Condition="'$(IncludeInSolutionFilter)'=='' AND $(_SkipBuildOnPublish) != true AND $(IsTestProject) != true AND '$(MSBuildProjectExtension)' == '.csproj'">true</IncludeInSolutionFilter>
+	</PropertyGroup>
+	<ItemGroup Condition=" $(_SkipCodeAnalyzers) != true AND '$(MSBuildProjectExtension)' == '.csproj' ">
+		<AdditionalFiles Include="$(DirectoryBuildPropsPath)\..\stylecop.json" Link="stylecop.json" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(_SkipCodeAnalyzers) != true AND '$(MSBuildProjectExtension)' == '.csproj' ">
+		<PackageReference
+		  Include="StyleCop.Analyzers"
+		  Version="*-*"
+		  PrivateAssets="all">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference
+		  Include="SonarAnalyzer.CSharp"
+		  Version="*"
+		  PrivateAssets="all">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference
+		  Include="IDisposableAnalyzers"
+		  Version="*"
+		  PrivateAssets="all">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup Condition=" $(IsTestProject) == true ">
+		<PackageReference Include="PrettierTestLogger" Version="*" />
+	</ItemGroup>
+	<ItemGroup Condition=" $(_SkipCodeAnalyzers) != true AND '$(MSBuildProjectExtension)' == '.csproj' ">
+		<AdditionalFiles Include="$(DirectoryBuildPropsPath)\..\CodeMetricsConfig.txt" />
+	</ItemGroup>
+</Project>

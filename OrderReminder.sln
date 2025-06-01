@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{D87D
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{9D91509D-AC9B-4F83-B2F8-4A2EB668147D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nugets", "Nugets", "{9D91509D-AC9B-4F83-B2F8-4A2EB668147D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayApi", "Gateway\ReviewApiGateway\GatewayApi.csproj", "{5D4955D0-3809-426A-AA1C-57A145E02CB1}"
 EndProject

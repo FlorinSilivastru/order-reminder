@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Messaging.Masstran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.Middlewares", "Nugets\Packages.Middlewares\Packages.Middlewares.csproj", "{4A449BA7-AC78-4B49-B18F-D9EEF692C107}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.DataAccess", "Nugets\Packages.DataAccess\Packages.DataAccess.csproj", "{5AC5FECA-5476-4E1D-9366-60C9A335987A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{4A449BA7-AC78-4B49-B18F-D9EEF692C107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A449BA7-AC78-4B49-B18F-D9EEF692C107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A449BA7-AC78-4B49-B18F-D9EEF692C107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AC5FECA-5476-4E1D-9366-60C9A335987A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AC5FECA-5476-4E1D-9366-60C9A335987A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AC5FECA-5476-4E1D-9366-60C9A335987A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AC5FECA-5476-4E1D-9366-60C9A335987A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +141,6 @@ Global
 		{7A9CAA8C-7715-4B67-AF8B-5F754E086F71} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
 		{72CDA4CC-D46D-4B67-BC9A-2FC43BEE5714} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
 		{4A449BA7-AC78-4B49-B18F-D9EEF692C107} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
+		{5AC5FECA-5476-4E1D-9366-60C9A335987A} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
 	EndGlobalSection
 EndGlobal

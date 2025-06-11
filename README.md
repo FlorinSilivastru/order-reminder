@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/e8d45ec7-2f57-4574-8463-82e601fc1162)
+
+
 # 🛠️ Microservices Architecture Showcase
 
 This repository contains microservices built to demonstrate advanced skills in building modern, production-ready .NET systems using clean architecture, message-based communication, and service observability.

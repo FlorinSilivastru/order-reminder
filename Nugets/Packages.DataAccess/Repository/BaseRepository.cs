@@ -3,25 +3,18 @@ using Packages.DataAccess.Repository.Contracts;
 
 namespace Packages.DataAccess.Repository;
 
-public class BaseRepository<TModel> : IBaseRepository<TModel>
+public class BaseRepository<TModel>(DbContext dbContext) : IBaseRepository<TModel>
     where TModel : class
 {
-    protected readonly DbContext Context;
+    protected readonly DbContext Context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
-    protected readonly DbSet<TModel> DbSet;
+    protected readonly DbSet<TModel> DbSet = dbContext.Set<TModel>();
 
-    public BaseRepository(DbContext dbContext)
-    {
-        this.Context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-        this.DbSet = dbContext.Set<TModel>();
-    }
-
-    public virtual async Task AddAsync(TModel entity)
+    public virtual async Task<TModel> AddAsync(TModel entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
-
-        await this.DbSet.AddAsync(entity);
-        await this.Context.SaveChangesAsync();
+        var result = await this.DbSet.AddAsync(entity);
+        return result.Entity;
     }
 
     public virtual async Task<TModel?> GetByIdAsync(params object[] keyValues)
@@ -34,20 +27,27 @@ public class BaseRepository<TModel> : IBaseRepository<TModel>
         return await this.DbSet.ToListAsync();
     }
 
-    public virtual async Task UpdateAsync(TModel entity)
+    public virtual TModel Update(TModel entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        this.DbSet.Update(entity);
-        await this.Context.SaveChangesAsync();
+        var result = this.DbSet.Update(entity);
+        return result.Entity;
     }
 
-    public virtual async Task DeleteAsync(TModel entity)
+    public virtual void Delete(TModel entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        this.DbSet.Remove(entity);
-        await this.Context.SaveChangesAsync();
+        if (entity is ISoftDelete softDeletable)
+        {
+            softDeletable.IsDeleted = true;
+            this.Update(entity);
+        }
+        else
+        {
+            this.DbSet.Remove(entity);
+        }
     }
 
     public virtual async Task DeleteByIdAsync(params object[] keyValues)
@@ -56,7 +56,6 @@ public class BaseRepository<TModel> : IBaseRepository<TModel>
         if (entity != null)
         {
             this.DbSet.Remove(entity);
-            await this.Context.SaveChangesAsync();
         }
     }
 }

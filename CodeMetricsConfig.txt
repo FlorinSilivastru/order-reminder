@@ -1,1 +1,2 @@
-CA1502: 15
+CA1502: 15    # Cyclomatic Complexity
+CA1505: 20    # Maintainability Index

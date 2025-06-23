@@ -2,6 +2,7 @@ using CustomerInventoryService.Application.CQRS.Commands.Handlers;
 using CustomerInventoryService.Infrastructure.Configuration.ApiVersioning;
 using CustomerInventoryService.Infrastructure.Configuration.Authenfication;
 using CustomerInventoryService.Infrastructure.Configuration.Authorization;
+using CustomerInventoryService.Infrastructure.Configuration.Database;
 using CustomerInventoryService.Infrastructure.Configuration.Middleware;
 using CustomerInventoryService.Infrastructure.Configuration.ServiceBus;
 using CustomerInventoryService.Infrastructure.Configuration.Settings;
@@ -28,6 +29,7 @@ builder
     .AddHttpContextAccessor()
     .ConfigureAuthentification()
     .ConfigureAuthorization()
+    .ConfigureDatabase(builder.Configuration)
     .AddHealthChecks();
 
 var app = builder.Build();

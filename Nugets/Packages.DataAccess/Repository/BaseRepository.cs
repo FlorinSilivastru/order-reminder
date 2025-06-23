@@ -10,21 +10,25 @@ public class BaseRepository<TModel>(DbContext dbContext) : IBaseRepository<TMode
 
     protected readonly DbSet<TModel> DbSet = dbContext.Set<TModel>();
 
-    public virtual async Task<TModel> AddAsync(TModel entity)
+    public virtual async Task<TModel> AddAsync(
+        TModel entity,
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(entity);
         var result = await this.DbSet.AddAsync(entity);
         return result.Entity;
     }
 
-    public virtual async Task<TModel?> GetByIdAsync(params object[] keyValues)
+    public virtual async Task<TModel?> GetByIdAsync(
+        CancellationToken cancellationToken = default,
+        params object[] keyValues)
     {
-        return await this.DbSet.FindAsync(keyValues);
+        return await this.DbSet.FindAsync(keyValues, cancellationToken);
     }
 
-    public virtual async Task<List<TModel>> GetAllAsync()
+    public virtual async Task<List<TModel>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        return await this.DbSet.ToListAsync();
+        return await this.DbSet.ToListAsync(cancellationToken);
     }
 
     public virtual TModel Update(TModel entity)
@@ -50,9 +54,11 @@ public class BaseRepository<TModel>(DbContext dbContext) : IBaseRepository<TMode
         }
     }
 
-    public virtual async Task DeleteByIdAsync(params object[] keyValues)
+    public virtual async Task DeleteByIdAsync(
+        CancellationToken cancellationToken = default,
+        params object[] keyValues)
     {
-        var entity = await this.GetByIdAsync(keyValues);
+        var entity = await this.GetByIdAsync(cancellationToken, keyValues);
         if (entity != null)
         {
             this.DbSet.Remove(entity);

@@ -22,6 +22,11 @@ internal static class Endpoints
         .ReportApiVersions()
         .Build();
 
+        app.MapGet("/api/v{version:apiVersion}/users-service/login", () => Results.Ok("Test middlewares"))
+       .WithName("login")
+       .WithApiVersionSet(versionSet)
+       .MapToApiVersion(new ApiVersion(1, 0));
+
         app.MapGet("/api/v{version:apiVersion}/users-service/add", () => Results.Ok("Test middlewares"))
         .WithName("Add-User")
         .WithApiVersionSet(versionSet)

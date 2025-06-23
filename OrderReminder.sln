@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packages.DataAccess", "Nuge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInventoryService.Infrastructure.Persistence", "CustomerInventoryService\CustomerInventoryService.Infrastructure.Persistence\CustomerInventoryService.Infrastructure.Persistence.csproj", "{001DFF32-813B-4395-9EB5-54D6D0F2F92B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerInventoryService.UnitTests", "CustomerInventoryService\CustomerInventoryService.UnitTests\CustomerInventoryService.UnitTests.csproj", "{9C560FC2-080B-4DD6-81A2-577C15A34877}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,10 @@ Global
 		{001DFF32-813B-4395-9EB5-54D6D0F2F92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001DFF32-813B-4395-9EB5-54D6D0F2F92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001DFF32-813B-4395-9EB5-54D6D0F2F92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C560FC2-080B-4DD6-81A2-577C15A34877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C560FC2-080B-4DD6-81A2-577C15A34877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C560FC2-080B-4DD6-81A2-577C15A34877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C560FC2-080B-4DD6-81A2-577C15A34877}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,6 +155,7 @@ Global
 		{4A449BA7-AC78-4B49-B18F-D9EEF692C107} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
 		{5AC5FECA-5476-4E1D-9366-60C9A335987A} = {9D91509D-AC9B-4F83-B2F8-4A2EB668147D}
 		{001DFF32-813B-4395-9EB5-54D6D0F2F92B} = {F3583850-33CB-4EDB-B803-F41DDE5C5B3B}
+		{9C560FC2-080B-4DD6-81A2-577C15A34877} = {F3583850-33CB-4EDB-B803-F41DDE5C5B3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E77F6FF4-F4FC-4E9C-8572-132E03302BFC}

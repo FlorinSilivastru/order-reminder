@@ -12,23 +12,27 @@
     <Compile Remove="CustomerInventoryService.Domain\**" />
     <Compile Remove="CustomerInventoryService.Infrastructure.Persistence\**" />
     <Compile Remove="CustomerInventoryService.Infrastructure\**" />
+    <Compile Remove="CustomerInventoryService.UnitTests\**" />
     <Content Remove="CustomerInventoryService.Application\**" />
     <Content Remove="CustomerInventoryService.Domain\**" />
     <Content Remove="CustomerInventoryService.Infrastructure.Persistence\**" />
     <Content Remove="CustomerInventoryService.Infrastructure\**" />
+    <Content Remove="CustomerInventoryService.UnitTests\**" />
     <EmbeddedResource Remove="CustomerInventoryService.Application\**" />
     <EmbeddedResource Remove="CustomerInventoryService.Domain\**" />
     <EmbeddedResource Remove="CustomerInventoryService.Infrastructure.Persistence\**" />
     <EmbeddedResource Remove="CustomerInventoryService.Infrastructure\**" />
+    <EmbeddedResource Remove="CustomerInventoryService.UnitTests\**" />
     <None Remove="CustomerInventoryService.Application\**" />
     <None Remove="CustomerInventoryService.Domain\**" />
     <None Remove="CustomerInventoryService.Infrastructure.Persistence\**" />
     <None Remove="CustomerInventoryService.Infrastructure\**" />
+    <None Remove="CustomerInventoryService.UnitTests\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6"/>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>

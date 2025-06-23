@@ -36,7 +36,6 @@ Each microservice follows a strict layered structure:
 - 🧩 **Correlation Middleware** for distributed traceability
 - 📬 [MassTransit](https://masstransit.io/) + RabbitMQ for asynchronous service communication
 - 📏 Code Metrics and Static Analysis using StyleCop Analyzers
-
 ---
 
 ## 🛠️ Tech Stack
@@ -69,3 +68,11 @@ Each microservice follows a strict layered structure:
 - 📏 Static code analysis via StyleCop, SonarAnalyzer, IDisposableAnalyzers, and built-in Code Metrics
 ---
 
+## 🛠️ Applying EF Core Migrations in Production
+⚠️ Avoid using Database.Migrate() at application startup in production environments.
+Doing so can lead to concurrency issues, race conditions, and inconsistent schema updates, especially in multi-instance or cloud deployments.
+## ✅ Recommended Migration Strategies: 
+1. Generate SQL Scripts for Controlled Deployment
+Use EF Core to generate an idempotent SQL script, which can be reviewed and applied manually or through your CI/CD pipeline.
+`Script-Migration -Idempotent -Output "Migrations\Prod.sql"`
+2. Apply Migrations from a Deployment Environment

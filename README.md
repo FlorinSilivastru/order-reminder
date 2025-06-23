@@ -24,6 +24,7 @@ Each microservice follows a strict layered structure:
 - `Domain` — business logic and core models
 - `Application` — CQRS handlers, interfaces, and use cases
 - `Infrastructure` — data access, messaging, external integrations
+- `Test` — this will contain the unit test cases
 - `API` — thin HTTP layer with controllers or minimal API endpoints
 
 ✅ Implemented Patterns:
